@@ -1,0 +1,10 @@
+Reference, Value, Footprint, Datasheet
+F1,FUSE,Fuse_Holders_and_Fuses:Fuseholder5x20_horiz_open_universal_Type-III,
+C1,1000uF,Capacitors_ThroughHole:C_Radial_D5_L6_P2.5,
+U1,LM7805,Buttons_Switches_ThroughHole:SW_Micro_SPST,
+C2,10uF,Capacitors_ThroughHole:C_Radial_D5_L11_P2,
+U2,FS-R6B,RC_Cars:FS-R6B,
+D4,1N4007,Diodes_ThroughHole:Diode_DO-35_SOD27_Horizontal_RM10,
+D3,1N4007,Diodes_ThroughHole:Diode_DO-35_SOD27_Horizontal_RM10,
+D2,1N4007,Diodes_ThroughHole:Diode_DO-35_SOD27_Horizontal_RM10,
+D1,1N4007,Diodes_ThroughHole:Diode_DO-35_SOD27_Horizontal_RM10,

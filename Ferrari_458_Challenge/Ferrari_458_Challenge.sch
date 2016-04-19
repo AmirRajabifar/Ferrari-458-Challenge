@@ -1,0 +1,473 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:Ferrari_458_Challenge-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Car Manager"
+Date "2016-01-05"
+Rev "1.0"
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L PWR_FLAG #FLG2
+U 1 1 568B4C9A
+P 1050 900
+F 0 "#FLG2" H 1050 995 50  0001 C CNN
+F 1 "PWR_FLAG" V 1200 1000 50  0000 C CNN
+F 2 "" H 1050 900 60  0000 C CNN
+F 3 "" H 1050 900 60  0000 C CNN
+	1    1050 900 
+	-1   0    0    1   
+$EndComp
+$Comp
+L PWR_FLAG #FLG1
+U 1 1 568B4CAC
+P 750 900
+F 0 "#FLG1" H 750 995 50  0001 C CNN
+F 1 "PWR_FLAG" V 900 1000 50  0000 C CNN
+F 2 "" H 750 900 60  0000 C CNN
+F 3 "" H 750 900 60  0000 C CNN
+	1    750  900 
+	-1   0    0    1   
+$EndComp
+$Comp
+L VCC #PWR2
+U 1 1 568B4CC8
+P 750 900
+F 0 "#PWR2" H 750 750 50  0001 C CNN
+F 1 "VCC" H 750 1050 50  0000 C CNN
+F 2 "" H 750 900 60  0000 C CNN
+F 3 "" H 750 900 60  0000 C CNN
+	1    750  900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR3
+U 1 1 568B4CDC
+P 1050 900
+F 0 "#PWR3" H 1050 650 50  0001 C CNN
+F 1 "GND" H 1050 750 50  0000 C CNN
+F 2 "" H 1050 900 60  0000 C CNN
+F 3 "" H 1050 900 60  0000 C CNN
+	1    1050 900 
+	-1   0    0    1   
+$EndComp
+Text Notes 650  650  0    60   ~ 0
+POWER_IN\n
+$Comp
+L FUSE F1
+U 1 1 568B5064
+P 3100 900
+F 0 "F1" H 3200 950 50  0000 C CNN
+F 1 "FUSE" H 3000 850 50  0000 C CNN
+F 2 "Fuse_Holders_and_Fuses:Fuseholder5x20_horiz_open_universal_Type-III" H 3100 900 60  0001 C CNN
+F 3 "" H 3100 900 60  0000 C CNN
+	1    3100 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP C5
+U 1 1 568B50E5
+P 3500 1250
+F 0 "C5" H 3525 1350 50  0000 L CNN
+F 1 "1000uF" H 3525 1150 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D5_L6_P2.5" H 3538 1100 30  0001 C CNN
+F 3 "" H 3500 1250 60  0000 C CNN
+	1    3500 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L LM7805 U1
+U 1 1 568B511E
+P 4100 950
+F 0 "U1" H 4250 754 60  0000 C CNN
+F 1 "LM7805" H 4100 1150 60  0000 C CNN
+F 2 "Buttons_Switches_ThroughHole:SW_Micro_SPST" H 4100 950 60  0001 C CNN
+F 3 "" H 4100 950 60  0000 C CNN
+	1    4100 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP C8
+U 1 1 568B5155
+P 4800 1350
+F 0 "C8" H 4825 1450 50  0000 L CNN
+F 1 "10uF" H 4825 1250 50  0000 L CNN
+F 2 "Capacitors_ThroughHole:C_Radial_D5_L11_P2" H 4838 1200 30  0001 C CNN
+F 3 "" H 4800 1350 60  0000 C CNN
+	1    4800 1350
+	1    0    0    -1  
+$EndComp
+Text Label 5200 900  0    60   ~ 0
+5V_OUT
+Text Label 5200 1650 0    60   ~ 0
+GND
+$Comp
+L FS-R6B U2
+U 1 1 568B5B11
+P 8750 1150
+F 0 "U2" H 9050 1400 60  0000 C CNN
+F 1 "FS-R6B" H 8600 1300 60  0000 C CNN
+F 2 "RC_Cars:FS-R6B" H 8900 1050 60  0001 C CNN
+F 3 "" H 8900 1050 60  0000 C CNN
+	1    8750 1150
+	1    0    0    -1  
+$EndComp
+Text Notes 8400 850  0    60   ~ 0
+RC_Receiver. \nOperates @ 5V D.C. \nConnects to Processor's pins with no level shifting.
+Text Label 9300 1000 0    60   ~ 0
+5V_OUT
+Text Label 9300 1100 0    60   ~ 0
+GND
+Text Label 8450 1550 3    39   ~ 0
+CH_D3
+Text Label 8550 1550 3    39   ~ 0
+CH_D5
+Text Label 8650 1550 3    39   ~ 0
+CH_D6
+Text Label 8750 1550 3    39   ~ 0
+CH_D9
+Text Label 8850 1550 3    39   ~ 0
+CH_D10
+Text Label 8950 1550 3    39   ~ 0
+CH_D12
+$Comp
+L D D4
+U 1 1 568B6B72
+P 2150 1550
+F 0 "D4" H 2150 1650 50  0000 C CNN
+F 1 "1N4007" H 2150 1450 50  0000 C CNN
+F 2 "Diodes_ThroughHole:Diode_DO-35_SOD27_Horizontal_RM10" H 2150 1550 60  0001 C CNN
+F 3 "" H 2150 1550 60  0000 C CNN
+	1    2150 1550
+	-1   0    0    1   
+$EndComp
+$Comp
+L D D3
+U 1 1 568B6BD4
+P 2150 1250
+F 0 "D3" H 2150 1350 50  0000 C CNN
+F 1 "1N4007" H 2150 1150 50  0000 C CNN
+F 2 "Diodes_ThroughHole:Diode_DO-35_SOD27_Horizontal_RM10" H 2150 1250 60  0001 C CNN
+F 3 "" H 2150 1250 60  0000 C CNN
+	1    2150 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L D D2
+U 1 1 568B6C0A
+P 2150 950
+F 0 "D2" H 2150 1050 50  0000 C CNN
+F 1 "1N4007" H 2150 850 50  0000 C CNN
+F 2 "Diodes_ThroughHole:Diode_DO-35_SOD27_Horizontal_RM10" H 2150 950 60  0001 C CNN
+F 3 "" H 2150 950 60  0000 C CNN
+	1    2150 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L D D1
+U 1 1 568B6C3D
+P 2150 650
+F 0 "D1" H 2150 750 50  0000 C CNN
+F 1 "1N4007" H 2150 550 50  0000 C CNN
+F 2 "Diodes_ThroughHole:Diode_DO-35_SOD27_Horizontal_RM10" H 2150 650 60  0001 C CNN
+F 3 "" H 2150 650 60  0000 C CNN
+	1    2150 650 
+	-1   0    0    1   
+$EndComp
+$Comp
+L VCC #PWR5
+U 1 1 568B911F
+P 1550 900
+F 0 "#PWR5" H 1550 750 50  0001 C CNN
+F 1 "VCC" H 1550 1050 50  0000 C CNN
+F 2 "" H 1550 900 60  0000 C CNN
+F 3 "" H 1550 900 60  0000 C CNN
+	1    1550 900 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR6
+U 1 1 568B9147
+P 1550 1100
+F 0 "#PWR6" H 1550 850 50  0001 C CNN
+F 1 "GND" H 1550 950 50  0000 C CNN
+F 2 "" H 1550 1100 60  0000 C CNN
+F 3 "" H 1550 1100 60  0000 C CNN
+	1    1550 1100
+	0    1    1    0   
+$EndComp
+Text Notes 2800 700  0    60   ~ 0
+Power distribution 
+$Comp
+L CONN_01X03 P1
+U 1 1 568C8F3A
+P 10600 3700
+F 0 "P1" H 10600 3900 50  0000 C CNN
+F 1 "SERVO" V 10700 3700 50  0000 C CNN
+F 2 "" H 10600 3700 60  0000 C CNN
+F 3 "" H 10600 3700 60  0000 C CNN
+	1    10600 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X03 P2
+U 1 1 568C8FED
+P 10600 4250
+F 0 "P2" H 10600 4450 50  0000 C CNN
+F 1 "ESC" V 10700 4250 50  0000 C CNN
+F 2 "" H 10600 4250 60  0000 C CNN
+F 3 "" H 10600 4250 60  0000 C CNN
+	1    10600 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X03 P3
+U 1 1 568C9050
+P 10600 4850
+F 0 "P3" H 10600 5050 50  0000 C CNN
+F 1 "LEFT_IR" V 10700 4850 50  0000 C CNN
+F 2 "" H 10600 4850 60  0000 C CNN
+F 3 "" H 10600 4850 60  0000 C CNN
+	1    10600 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X03 P4
+U 1 1 568C90C4
+P 10600 5500
+F 0 "P4" H 10600 5700 50  0000 C CNN
+F 1 "RIGHT_IR" V 10700 5500 50  0000 C CNN
+F 2 "" H 10600 5500 60  0000 C CNN
+F 3 "" H 10600 5500 60  0000 C CNN
+	1    10600 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X04 P5
+U 1 1 568C911E
+P 10600 6100
+F 0 "P5" H 10600 6350 50  0000 C CNN
+F 1 "ULTRASONIC" V 10700 6100 50  0000 C CNN
+F 2 "" H 10600 6100 60  0000 C CNN
+F 3 "" H 10600 6100 60  0000 C CNN
+	1    10600 6100
+	1    0    0    -1  
+$EndComp
+Text Label 10050 3700 2    39   ~ 0
+5V_OUT
+Text Label 10050 4250 2    39   ~ 0
+5V_OUT
+Text Label 10050 4850 2    39   ~ 0
+5V_OUT
+Text Label 10050 5500 2    39   ~ 0
+5V_OUT
+Text Label 10050 3600 2    39   ~ 0
+GND
+Text Label 10050 4150 2    39   ~ 0
+GND
+Text Label 10050 4750 2    39   ~ 0
+GND
+Text Label 10050 5400 2    39   ~ 0
+GND
+Wire Wire Line
+	3500 1650 3500 1400
+Connection ~ 3500 1650
+Wire Wire Line
+	4100 1650 4100 1200
+Connection ~ 4100 1650
+Wire Wire Line
+	4800 1650 4800 1500
+Wire Wire Line
+	4500 900  4800 900 
+Wire Wire Line
+	4800 900  5200 900 
+Wire Wire Line
+	4800 900  4800 1200
+Connection ~ 4800 900 
+Connection ~ 4800 1650
+Wire Wire Line
+	3350 900  3500 900 
+Wire Wire Line
+	3500 900  3700 900 
+Wire Wire Line
+	3500 1100 3500 900 
+Connection ~ 3500 900 
+Wire Wire Line
+	2450 1250 2300 1250
+Wire Wire Line
+	2450 950  2450 1100
+Wire Wire Line
+	2450 1100 2450 1250
+Wire Wire Line
+	2450 950  2300 950 
+Wire Wire Line
+	2550 1550 2300 1550
+Wire Wire Line
+	2550 650  2550 900 
+Wire Wire Line
+	2550 900  2550 1550
+Wire Wire Line
+	2550 650  2300 650 
+Wire Wire Line
+	1800 1550 2000 1550
+Wire Wire Line
+	1800 1250 1800 1400
+Wire Wire Line
+	1800 1400 1800 1550
+Wire Wire Line
+	1800 1250 2000 1250
+Wire Wire Line
+	1800 950  2000 950 
+Wire Wire Line
+	1800 650  1800 800 
+Wire Wire Line
+	1800 800  1800 950 
+Wire Wire Line
+	1800 650  2000 650 
+Connection ~ 1800 1400
+Wire Wire Line
+	1550 900  1600 900 
+Wire Wire Line
+	1600 900  1600 800 
+Wire Wire Line
+	1600 800  1800 800 
+Connection ~ 1800 800 
+Connection ~ 2450 1100
+Wire Wire Line
+	2450 1100 2800 1100
+Wire Wire Line
+	2800 1100 2800 1650
+Wire Wire Line
+	2800 1650 3500 1650
+Wire Wire Line
+	3500 1650 4100 1650
+Wire Wire Line
+	4100 1650 4800 1650
+Wire Wire Line
+	4800 1650 5200 1650
+Wire Wire Line
+	2850 900  2550 900 
+Connection ~ 2550 900 
+Wire Wire Line
+	1550 1100 1600 1100
+Wire Wire Line
+	1600 1100 1600 1400
+Wire Wire Line
+	1600 1400 1800 1400
+Wire Wire Line
+	10400 3600 10050 3600
+Wire Wire Line
+	10400 3700 10050 3700
+Wire Wire Line
+	10400 3800 10050 3800
+Wire Wire Line
+	10400 4150 10050 4150
+Wire Wire Line
+	10400 4250 10050 4250
+Wire Wire Line
+	10400 4350 10050 4350
+Wire Wire Line
+	10400 4750 10050 4750
+Wire Wire Line
+	10400 4850 10050 4850
+Wire Wire Line
+	10400 4950 10050 4950
+Wire Wire Line
+	10400 5400 10050 5400
+Wire Wire Line
+	10400 5500 10050 5500
+Wire Wire Line
+	10400 5600 10050 5600
+Wire Wire Line
+	10400 5950 10050 5950
+Wire Wire Line
+	10400 6050 10050 6050
+Wire Wire Line
+	10400 6150 10050 6150
+Wire Wire Line
+	10400 6250 10050 6250
+$Comp
+L Arduino_nano U?
+U 1 1 5716DEF4
+P 5700 6250
+F 0 "U?" H 6250 7100 60  0000 C CNN
+F 1 "Arduino_nano" H 5300 7100 60  0000 C CNN
+F 2 "" H 5850 5900 60  0000 C CNN
+F 3 "" H 5850 5900 60  0000 C CNN
+	1    5700 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Arduino_mega U?
+U 1 1 5716DF45
+P 2350 5450
+F 0 "U?" H 1700 6600 60  0000 C CNN
+F 1 "Arduino_mega" H 1950 6750 60  0000 C CNN
+F 2 "" H 1150 7300 60  0000 C CNN
+F 3 "" H 1150 7300 60  0000 C CNN
+	1    2350 5450
+	1    0    0    -1  
+$EndComp
+Text Label 6550 5600 0    60   ~ 0
+5V_OUT
+Text Label 6550 5700 0    39   ~ 0
+GND
+Text Label 4800 5900 2    39   ~ 0
+GND
+Text Label 4800 6100 2    39   ~ 0
+CH_D3
+Text Label 4800 6300 2    39   ~ 0
+CH_D5
+Text Label 4800 6400 2    39   ~ 0
+CH_D6
+Text Label 4800 6700 2    39   ~ 0
+CH_D9
+Text Label 4800 6800 2    39   ~ 0
+CH_D10
+Text Label 4800 7000 2    39   ~ 0
+CH_D12
+Text Label 3800 6650 0    39   ~ 0
+Serisl_RX
+Text Label 3800 6750 0    39   ~ 0
+Serial_TX
+Text Label 4800 5600 2    39   ~ 0
+Serial_TX
+Text Label 4800 5700 2    39   ~ 0
+Serisl_RX
+$EndSCHEMATC
