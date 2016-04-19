@@ -30,8 +30,8 @@ int x, y;
 void setup() 
 {
 // attach() is used to assign relevant pins to relevant servos
-     servo.attach(2);
-     ESC.attach(3);
+     servo.attach(6);
+     ESC.attach(7);
 // begining the serial communication  
   Serial.begin(250000);
   Serial1.begin(250000);
