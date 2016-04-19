@@ -314,50 +314,38 @@ Connection ~ 4100 1650
 Wire Wire Line
 	4800 1650 4800 1500
 Wire Wire Line
-	4500 900  4800 900 
-Wire Wire Line
-	4800 900  5200 900 
+	4500 900  5200 900 
 Wire Wire Line
 	4800 900  4800 1200
 Connection ~ 4800 900 
 Connection ~ 4800 1650
 Wire Wire Line
-	3350 900  3500 900 
-Wire Wire Line
-	3500 900  3700 900 
+	3350 900  3700 900 
 Wire Wire Line
 	3500 1100 3500 900 
 Connection ~ 3500 900 
 Wire Wire Line
 	2450 1250 2300 1250
 Wire Wire Line
-	2450 950  2450 1100
-Wire Wire Line
-	2450 1100 2450 1250
+	2450 950  2450 1250
 Wire Wire Line
 	2450 950  2300 950 
 Wire Wire Line
 	2550 1550 2300 1550
 Wire Wire Line
-	2550 650  2550 900 
-Wire Wire Line
-	2550 900  2550 1550
+	2550 650  2550 1550
 Wire Wire Line
 	2550 650  2300 650 
 Wire Wire Line
 	1800 1550 2000 1550
 Wire Wire Line
-	1800 1250 1800 1400
-Wire Wire Line
-	1800 1400 1800 1550
+	1800 1250 1800 1550
 Wire Wire Line
 	1800 1250 2000 1250
 Wire Wire Line
 	1800 950  2000 950 
 Wire Wire Line
-	1800 650  1800 800 
-Wire Wire Line
-	1800 800  1800 950 
+	1800 650  1800 950 
 Wire Wire Line
 	1800 650  2000 650 
 Connection ~ 1800 1400
@@ -374,13 +362,7 @@ Wire Wire Line
 Wire Wire Line
 	2800 1100 2800 1650
 Wire Wire Line
-	2800 1650 3500 1650
-Wire Wire Line
-	3500 1650 4100 1650
-Wire Wire Line
-	4100 1650 4800 1650
-Wire Wire Line
-	4800 1650 5200 1650
+	2800 1650 5200 1650
 Wire Wire Line
 	2850 900  2550 900 
 Connection ~ 2550 900 
@@ -444,7 +426,7 @@ F 3 "" H 1150 7300 60  0000 C CNN
 	1    2350 5450
 	1    0    0    -1  
 $EndComp
-Text Label 6550 5600 0    60   ~ 0
+Text Label 6550 5600 0    39   ~ 0
 5V_OUT
 Text Label 6550 5700 0    39   ~ 0
 GND
@@ -470,4 +452,174 @@ Text Label 4800 5600 2    39   ~ 0
 Serial_TX
 Text Label 4800 5700 2    39   ~ 0
 Serisl_RX
+NoConn ~ 3800 5550
+NoConn ~ 3800 5450
+NoConn ~ 4800 5800
+NoConn ~ 6550 5800
+NoConn ~ 6550 5900
+NoConn ~ 4800 6000
+NoConn ~ 4800 6200
+NoConn ~ 4800 6500
+NoConn ~ 4800 6600
+NoConn ~ 4800 6900
+NoConn ~ 6550 6000
+NoConn ~ 6550 6100
+NoConn ~ 6550 6200
+NoConn ~ 6550 6300
+NoConn ~ 6550 6400
+NoConn ~ 6550 6500
+NoConn ~ 6550 6600
+NoConn ~ 6550 6700
+NoConn ~ 6550 6800
+NoConn ~ 6550 6900
+NoConn ~ 6550 7000
+Text Label 3800 5150 0    39   ~ 0
+Servo
+Text Label 3800 5050 0    39   ~ 0
+ESC
+Text Label 10050 3800 2    39   ~ 0
+Servo
+Text Label 10050 4350 2    39   ~ 0
+ESC
+Text Label 3800 5250 0    39   ~ 0
+ECHO
+Text Label 3800 5350 0    39   ~ 0
+TRIG
+Text Label 10050 5950 2    39   ~ 0
+GND
+Text Label 10050 6050 2    39   ~ 0
+ECHO
+Text Label 10050 6150 2    39   ~ 0
+TRIG
+Text Label 10050 6250 2    39   ~ 0
+5V_OUT
+Text Label 950  4700 2    39   ~ 0
+5V_OUT
+Text Label 950  4550 2    39   ~ 0
+GND
+NoConn ~ 950  4400
+NoConn ~ 950  4250
+NoConn ~ 950  4100
+NoConn ~ 950  3950
+NoConn ~ 950  3800
+NoConn ~ 3800 3850
+NoConn ~ 3800 3950
+$Comp
+L R R?
+U 1 1 57168707
+P 1350 1950
+F 0 "R?" V 1430 1950 50  0000 C CNN
+F 1 "1M" V 1350 1950 50  0000 C CNN
+F 2 "" V 1280 1950 50  0000 C CNN
+F 3 "" H 1350 1950 50  0000 C CNN
+	1    1350 1950
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 57168768
+P 1850 1950
+F 0 "R?" V 1930 1950 50  0000 C CNN
+F 1 "100K" V 1850 1950 50  0000 C CNN
+F 2 "" V 1780 1950 50  0000 C CNN
+F 3 "" H 1850 1950 50  0000 C CNN
+	1    1850 1950
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1500 1950 1700 1950
+$Comp
+L GND #PWR?
+U 1 1 571687FA
+P 2100 1950
+F 0 "#PWR?" H 2100 1700 50  0001 C CNN
+F 1 "GND" H 2100 1800 50  0000 C CNN
+F 2 "" H 2100 1950 50  0000 C CNN
+F 3 "" H 2100 1950 50  0000 C CNN
+	1    2100 1950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2100 1950 2000 1950
+Connection ~ 1600 1950
+Wire Wire Line
+	1600 1950 1600 2100
+Text Label 1600 2100 3    39   ~ 0
+ADC0
+$Comp
+L CONN_01X02 P?
+U 1 1 57168C66
+P 800 2000
+F 0 "P?" H 800 2150 50  0000 C CNN
+F 1 "7.4V_BATTERY" V 900 2000 50  0000 C CNN
+F 2 "" H 800 2000 50  0000 C CNN
+F 3 "" H 800 2000 50  0000 C CNN
+	1    800  2000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1000 1950 1200 1950
+Text Label 1000 2050 0    39   ~ 0
+GND
+$Comp
+L R R?
+U 1 1 57169476
+P 1350 2500
+F 0 "R?" V 1430 2500 50  0000 C CNN
+F 1 "1M" V 1350 2500 50  0000 C CNN
+F 2 "" V 1280 2500 50  0000 C CNN
+F 3 "" H 1350 2500 50  0000 C CNN
+	1    1350 2500
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 5716947C
+P 1850 2500
+F 0 "R?" V 1930 2500 50  0000 C CNN
+F 1 "100K" V 1850 2500 50  0000 C CNN
+F 2 "" V 1780 2500 50  0000 C CNN
+F 3 "" H 1850 2500 50  0000 C CNN
+	1    1850 2500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1500 2500 1700 2500
+$Comp
+L GND #PWR?
+U 1 1 57169483
+P 2100 2500
+F 0 "#PWR?" H 2100 2250 50  0001 C CNN
+F 1 "GND" H 2100 2350 50  0000 C CNN
+F 2 "" H 2100 2500 50  0000 C CNN
+F 3 "" H 2100 2500 50  0000 C CNN
+	1    2100 2500
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2100 2500 2000 2500
+Connection ~ 1600 2500
+Wire Wire Line
+	1600 2500 1600 2650
+Text Label 1600 2650 3    39   ~ 0
+ADC1
+$Comp
+L CONN_01X02 P?
+U 1 1 5716948D
+P 800 2550
+F 0 "P?" H 800 2700 50  0000 C CNN
+F 1 "12V_BATTERY" V 900 2550 50  0000 C CNN
+F 2 "" H 800 2550 50  0000 C CNN
+F 3 "" H 800 2550 50  0000 C CNN
+	1    800  2550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1000 2500 1200 2500
+Text Label 1000 2600 0    39   ~ 0
+GND
+Text Label 950  5050 2    39   ~ 0
+ADC0
+Text Label 950  5150 2    39   ~ 0
+ADC1
 $EndSCHEMATC
