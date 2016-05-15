@@ -1,229 +1,161 @@
-//Adding Servo & NewPing libraries
-  #include <Servo.h>
-  #include <NewPing.h>
+//Adding requied libraries
+#include <Servo.h>
+#include <NewPing.h>
+#include <Wire.h>
 
-//Pin connection to Ultrasonic sensor and the range
-  #define TRIGGER_PIN  4
-  #define ECHO_PIN     5
-  #define MAX_DISTANCE 200
-//Variables to store middle position of joysticks
-  int deadzoneA= 0;
-  int deadzoneB= 0;
-//Á variable to hold the range 
-int autonomous; 
-//micro seconds from trig
-  int uS;
-//variable to hold distance in cm
-  int distance;
-// creating  servo objects
-  Servo servo;
-  Servo ESC;
-//creating sonar object
-  NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
-  
-String sCH1, sCH2, sCH3, sCH4, sCH5, sCH6;
-float CH1, CH2, CH3, CH4, CH5, CH6;
-String data;
+#define fromLow 900
+#define fromHigh 1900
+#define toLow 1000
+#define toHigh 2000
 
-int x, y;
+#define esc_pin 6
+#define servo_pin 5
 
-void setup() 
+byte last_channel_1, last_channel_2, last_channel_3, last_channel_4, last_channel_5, last_channel_6;
+int receiver_input_channel_1, receiver_input_channel_2, receiver_input_channel_3, receiver_input_channel_4, receiver_input_channel_5, receiver_input_channel_6;
+int channel_1, channel_2, channel_3, channel_4, channel_5, channel_6;
+int esc, servo;
+unsigned long timer_channel_1, timer_channel_2, timer_channel_3, timer_channel_4, timer_channel_5, timer_channel_6;
+unsigned long timer_1, timer_2, timer_3, timer_4, timer_5, timer_6, current_time;
+
+ 
+void setup ()
 {
-// attach() is used to assign relevant pins to relevant servos
-     servo.attach(6);
-     ESC.attach(7);
-// begining the serial communication  
-  Serial.begin(250000);
-  Serial1.begin(250000);
-  Serial1.flush();
-  data = Serial1.readStringUntil('\n');
-  data = "0";  
+  pinMode(esc_pin, OUTPUT);
+  pinMode(servo_pin, OUTPUT);
+  
+  //Set PCIE0 to enable PCMSK2 scan.
+  PCICR |= (1 << PCIE2);
+  
+  PCMSK2 |= (1 << PCINT16); //Set PCINT16 (Analog input A8) to trigger an interrupt on state change.
+  PCMSK2 |= (1 << PCINT17); //Set PCINT17 (Analog input A9) to trigger an interrupt on state change.
+  PCMSK2 |= (1 << PCINT18); //Set PCINT18 (Analog input A10) to trigger an interrupt on state change.
+  PCMSK2 |= (1 << PCINT19); //Set PCINT19 (Analog input A11) to trigger an interrupt on state change.
+  PCMSK2 |= (1 << PCINT20); //Set PCINT20 (Analog input A12) to trigger an interrupt on state change.
+  PCMSK2 |= (1 << PCINT21); //Set PCINT21 (Analog input A13) to trigger an interrupt on state change.
+
+  Serial.begin(115200);
 }
 
-void loop() 
+void loop ()
 {
-  if (Serial1.available() > 0)
-  {
-    data = Serial1.readStringUntil('\n');
-  }
-  String payload = "";
-  if (data != "0")
-  {
-    int offset = data.indexOf("U*");
-    if (offset >= 0)
-    {
-      payload = data.substring(offset + 3, data.indexOf('\n'));
-      char value = data.charAt(offset+2);
-      switch (value)
-      {
-        case 'A':
-          sCH1 = payload;
-          break;
-        case 'B':
-          sCH2 = payload;
-          break;
-        case 'C':
-          sCH3 = payload;
-          break;
-        case 'D':
-          sCH4 = payload;
-          break;
-        case 'E':
-          sCH5 =payload;
-          break;
-        case 'F':
-          sCH6 = payload;
-          break;
-      }
-    }
-  }
-// Converting strings to float  
-  CH1 = sCH1.toFloat();
-  CH2 = sCH2.toFloat();
-  CH3 = sCH3.toFloat();
-  CH4 = sCH4.toFloat();
-  CH5 = sCH5.toFloat();
-  CH6 = sCH6.toFloat();
-//reading from ultrasonic
-  uS = sonar.ping_median();
-  distance = uS / US_ROUNDTRIP_CM;  //converts the readings to CM
-// assigning values to dead zones     
-  deadzoneA = 900;
-  deadzoneB = 1400; 
-  autonomous = 1800;
+  channel_1 = map(receiver_input_channel_1, fromLow, fromHigh, toLow, toHigh);
+  channel_2 = map(receiver_input_channel_2, fromLow, fromHigh, toLow, toHigh);
+  channel_3 = map(receiver_input_channel_3, fromLow, fromHigh, toLow, toHigh);
+  channel_4 = map(receiver_input_channel_4, fromLow, fromHigh, toLow, toHigh);
+  channel_5 = map(receiver_input_channel_5, fromLow, fromHigh, toLow, toHigh);
+  channel_6 = map(receiver_input_channel_6, fromLow, fromHigh, toLow, toHigh);
 
-//*************** Debug ****************\\  
-  Serial.print("CH1 = ");
-  Serial.print(CH1);
+// debug
+  Serial.print("Channel 1 = ");
+  Serial.print(channel_1);
   Serial.print('\t');
-  Serial.print("CH2 = ");
-  Serial.print(CH2);
+  Serial.print("Channel 2 = ");
+  Serial.print(channel_2);
   Serial.print('\t');
-  Serial.print("CH3 = ");
-  Serial.print(CH3);
+  Serial.print("Channel 3 = ");
+  Serial.print(channel_3);
   Serial.print('\t');
-  Serial.print("CH4 = ");
-  Serial.print(CH4);
+  Serial.print("Channel 4 = ");
+  Serial.print(channel_4);
   Serial.print('\t');
-  Serial.print("CH5 = ");
-  Serial.print(CH5);
+  Serial.print("Channel 5 = ");
+  Serial.print(channel_5);
   Serial.print('\t');
-  Serial.print("CH6 = ");
-  Serial.print(CH6);
-  Serial.println("");
-  Serial.print("Distance = ");
-  Serial.println(distance);   
-  
-   
+  Serial.print("Channel 6 = ");
+  Serial.print(channel_6);
+  Serial.print('\n');
 
-//********** DO STUFF **********\\     
-
-/*
- * Safety feature: When transmitter is off DON'T freak out!
- */
-  if (CH1 == 0 && CH2 == 0 && CH3 == 0 && CH4 == 0 && CH5 == 0 && CH6 == 0)
-  {
-    ESC.write(108);
-    servo.write(94);
-  }
-  else
-  {
-
-  // Drive    
-     if (CH3 != deadzoneA)
-     {
-      DRIVE();
-     }
-     else
-     {
-      ESC.write(108);
-     }
-
-  // Turn 
-     if (CH1 != deadzoneB)
-     {
-      TURN();
-     }
-     else
-     {
-      servo.write(94);
-     }
-  
-  //Autonomous drive
-    if (CH6 >= autonomous)
-    {
-      AUTONOMOUS();
-    }
-  }
- //************* 
 }
 
 
-void DRIVE()
+ISR(PCINT2_vect)
 {
-//"x" is a variable tha stores the angle  
-    if (CH3 != deadzoneA && CH5 == deadzoneA)
-    {
-      x = map(CH3, 900, 1900, 108, 180);
-      ESC.write(x);      
-    }
-    else if (CH3 != deadzoneA && CH5 != deadzoneA)
-    {
-      x = map(CH3, 900, 1900, 108, 0);
-      ESC.write(x);        
-    }
-}
-
-
-void TURN(){
-//"y" is a variable tha stores the angle   
-    y = map(CH1, 900, 1900, 0, 180);
-    servo.write(y);
-}
-
-
-void AUTONOMOUS(){
-/*
- * This function will drive the car Autonomously
- */
-//Break
-  int lastDistance = 0;
-  int distanceDifference = lastDistance - distance ;
-
-
-  if (distanceDifference >= 10) {
-    ESC.write(0);
-    lastDistance = distance;
+  current_time = micros();
+  //Channel 1=========================================
+  if(PINK & B00000001)
+  {                                        //Is input 8 high?
+  if(last_channel_1 == 0)
+  {                                   //Input 8 changed from 0 to 1
+    last_channel_1 = 1;                                      //Remember current input state
+    timer_1 = current_time;                                  //Set timer_1 to current_time
   }
-  // Drive
-    /* Makes use of one Ultrasonic sensor. 
-     */
-    else if (CH6 >= autonomous && distance <= 200 && distance > 100){
-      ESC.write(180);     // 100% Throttle 
-    }else if (CH6 >= autonomous && distance <= 100 && distance > 50){
-      x = map(distance, 50, 100, 144, 162); 
-      ESC.write(x);       // 75% Throttle
-    }else if(CH6 >= autonomous && distance <= 50 && distance > 25){
-      x = map(distance, 25, 50, 126, 144);
-      ESC.write(x);       // 50% Throttle
-    }else if (CH6 >= autonomous && distance <= 25 && distance > 10) {
-      x = map(distance, 10, 25, 115, 126);
-      ESC.write(x);       // 25% Throttle
-    }else if (CH6 >= autonomous && distance <= 10 && distance > 5) {
-      x = map(distance, 5, 10, 108, 119);
-      ESC.write(x);       // 15% Throttle
-    }else{
-    ESC.write(108);       // 0% Throttle
+  }
+  else if(last_channel_1 == 1)
+  {                                //Input 8 is not high and changed from 1 to 0
+    last_channel_1 = 0;                                        //Remember current input state
+    receiver_input_channel_1 = current_time - timer_1;         //Channel 1 is current_time - timer_1
+  }
+  //Channel 2=========================================
+  if(PINK & B00000010 )
+  {                                       //Is input 9 high?
+    if(last_channel_2 == 0)
+    {                                   //Input 9 changed from 0 to 1
+      last_channel_2 = 1;                                      //Remember current input state
+      timer_2 = current_time;                                  //Set timer_2 to current_time
     }
-  
-  lastDistance = distance;
+  }
+  else if(last_channel_2 == 1)
+  {                                //Input 9 is not high and changed from 1 to 0
+    last_channel_2 = 0;                                        //Remember current input state
+    receiver_input_channel_2 = current_time - timer_2;         //Channel 2 is current_time - timer_2
+  }
+  //Channel 3=========================================
+  if(PINK & B00000100 )
+  {                                       //Is input 10 high?
+    if(last_channel_3 == 0)
+    {                                   //Input 10 changed from 0 to 1
+      last_channel_3 = 1;                                      //Remember current input state
+      timer_3 = current_time;                                  //Set timer_3 to current_time
+    }
+  }
+  else if(last_channel_3 == 1)
+  {                                //Input 10 is not high and changed from 1 to 0
+    last_channel_3 = 0;                                        //Remember current input state
+    receiver_input_channel_3 = current_time - timer_3;         //Channel 3 is current_time - timer_3
 
-// Turn
-  /*Makes use of two IR sensors. The sensors are placed on both sides of the car.
-   *Are monitoring the set distance within the range specified.
-   */
-   
+  }
+  //Channel 4=========================================
+  if(PINK & B00001000 )
+  {                                       //Is input 11 high?
+    if(last_channel_4 == 0)
+    {                                   //Input 11 changed from 0 to 1
+      last_channel_4 = 1;                                      //Remember current input state
+      timer_4 = current_time;                                  //Set timer_4 to current_time
+    }
+  }
+  else if(last_channel_4 == 1)
+  {                                //Input 11 is not high and changed from 1 to 0
+    last_channel_4 = 0;                                        //Remember current input state
+    receiver_input_channel_4 = current_time - timer_4;         //Channel 4 is current_time - timer_4
+  }
+  //Channel 5=========================================
+  if(PINK & B00010000)
+  {
+    if(last_channel_5 == 0)
+    {
+      last_channel_5 = 1;
+      timer_5 = current_time;        
+    }    
+  }
+  else if(last_channel_5 == 1)
+  {
+      last_channel_5 = 0;
+      receiver_input_channel_5 = current_time - timer_5;
+  }
+  //Channel 6=========================================
+  if(PINK & B00100000)
+  {
+    if(last_channel_6 == 0)
+    {
+      last_channel_6 = 1;
+      timer_6 = current_time;
+    }    
+  }
+  else if(last_channel_6 == 1)
+  {
+    last_channel_6 = 0;
+    receiver_input_channel_6 = current_time - timer_6;    
+  }
 }
-
-
 
