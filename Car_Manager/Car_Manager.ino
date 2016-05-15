@@ -1,16 +1,22 @@
-//Adding Servo & NewPing libraries
+//Adding requied libraries
   #include <Servo.h>
   #include <NewPing.h>
-
+//  #include <Wire.h>
 //Pin connection to Ultrasonic sensor and the range
-  #define TRIGGER_PIN  4
-  #define ECHO_PIN     5
+  #define TRIGGER_PIN  26
+  #define ECHO_PIN     4
   #define MAX_DISTANCE 200
+//Pin connection to RC receiver
+  int CH_PIN[6] = {7, 8, 9, 10, 11, 12};
+//array to store CH  
+  float CH[6];
+//
+  int x, y;  
 //Variables to store middle position of joysticks
-  int deadzoneA= 0;
-  int deadzoneB= 0;
+  int deadzoneA = 1000;
+  int deadzoneB = 1400;
 //Á variable to hold the range 
-int autonomous; 
+  int autonomous = 1800; 
 //micro seconds from trig
   int uS;
 //variable to hold distance in cm
@@ -20,100 +26,60 @@ int autonomous;
   Servo ESC;
 //creating sonar object
   NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
-  
-String sCH1, sCH2, sCH3, sCH4, sCH5, sCH6;
-float CH1, CH2, CH3, CH4, CH5, CH6;
-String data;
 
-int x, y;
-
+//a function to round the read numbers
+float roundCH (float CH)
+{
+  float result;
+  result = CH / 100.0;
+  result = round (CH);
+  result = result * 100.0;
+  return result;
+}
 void setup() 
 {
+//set the pin state for receiver  
+  for (int i = 0; i < 6; i++)
+  {
+    pinMode (CH_PIN[i], INPUT);
+  }
 // attach() is used to assign relevant pins to relevant servos
-     servo.attach(6);
-     ESC.attach(7);
+  servo.attach(5);
+  ESC.attach(6);
 // begining the serial communication  
-  Serial.begin(250000);
-  Serial1.begin(250000);
-  Serial1.flush();
-  data = Serial1.readStringUntil('\n');
-  data = "0";  
+  Serial.begin(9600);
+ // Wire.begin();
 }
 
 void loop() 
 {
-  if (Serial1.available() > 0)
+//using pulseIn() to read from receiver
+  for (int i = 0; i < 6; i++)
   {
-    data = Serial1.readStringUntil('\n');
+    CH[i] = pulseIn(CH_PIN[i], HIGH); 
+    CH[i] = roundCH (CH[i]);
+    CH[i] = map (CH[i], 98500, 197000, 900, 1900);
   }
-  String payload = "";
-  if (data != "0")
-  {
-    int offset = data.indexOf("U*");
-    if (offset >= 0)
-    {
-      payload = data.substring(offset + 3, data.indexOf('\n'));
-      char value = data.charAt(offset+2);
-      switch (value)
-      {
-        case 'A':
-          sCH1 = payload;
-          break;
-        case 'B':
-          sCH2 = payload;
-          break;
-        case 'C':
-          sCH3 = payload;
-          break;
-        case 'D':
-          sCH4 = payload;
-          break;
-        case 'E':
-          sCH5 =payload;
-          break;
-        case 'F':
-          sCH6 = payload;
-          break;
-      }
-    }
-  }
-// Converting strings to float  
-  CH1 = sCH1.toFloat();
-  CH2 = sCH2.toFloat();
-  CH3 = sCH3.toFloat();
-  CH4 = sCH4.toFloat();
-  CH5 = sCH5.toFloat();
-  CH6 = sCH6.toFloat();
 //reading from ultrasonic
   uS = sonar.ping_median();
   distance = uS / US_ROUNDTRIP_CM;  //converts the readings to CM
-// assigning values to dead zones     
-  deadzoneA = 900;
-  deadzoneB = 1400; 
-  autonomous = 1800;
 
-//*************** Debug ****************\\  
-  Serial.print("CH1 = ");
-  Serial.print(CH1);
+
+//*************** Debug ****************\\ 
+
+ for (int i = 0; i < 6; i++)
+ {
+  Serial.print(CH[i]);
   Serial.print('\t');
-  Serial.print("CH2 = ");
-  Serial.print(CH2);
-  Serial.print('\t');
-  Serial.print("CH3 = ");
-  Serial.print(CH3);
-  Serial.print('\t');
-  Serial.print("CH4 = ");
-  Serial.print(CH4);
-  Serial.print('\t');
-  Serial.print("CH5 = ");
-  Serial.print(CH5);
-  Serial.print('\t');
-  Serial.print("CH6 = ");
-  Serial.print(CH6);
-  Serial.println("");
+ }
   Serial.print("Distance = ");
   Serial.println(distance);   
-  
+  Serial.print("X = ");
+  Serial.print(x);
+  Serial.print('\t');
+  Serial.print("Y = ");
+  Serial.print(y);
+  Serial.print('\n');
    
 
 //********** DO STUFF **********\\     
@@ -121,16 +87,15 @@ void loop()
 /*
  * Safety feature: When transmitter is off DON'T freak out!
  */
-  if (CH1 == 0 && CH2 == 0 && CH3 == 0 && CH4 == 0 && CH5 == 0 && CH6 == 0)
+  if (CH[0] == 0 && CH[1] == 0 && CH[2] == 0 && CH[3] == 0 && CH[4] == 0 && CH[5] == 0)
   {
     ESC.write(108);
     servo.write(94);
   }
   else
   {
-
   // Drive    
-     if (CH3 != deadzoneA)
+     if (CH[2] != deadzoneA)
      {
       DRIVE();
      }
@@ -140,7 +105,7 @@ void loop()
      }
 
   // Turn 
-     if (CH1 != deadzoneB)
+     if (CH[0] != deadzoneB)
      {
       TURN();
      }
@@ -150,11 +115,12 @@ void loop()
      }
   
   //Autonomous drive
-    if (CH6 >= autonomous)
+    if (CH[5] >= autonomous)
     {
-      AUTONOMOUS();
+   //   AUTONOMOUS();
     }
   }
+  
  //************* 
 }
 
@@ -162,30 +128,31 @@ void loop()
 void DRIVE()
 {
 //"x" is a variable tha stores the angle  
-    if (CH3 != deadzoneA && CH5 == deadzoneA)
+    if (CH[2] != deadzoneA && CH[4] <= deadzoneA)
     {
-      x = map(CH3, 900, 1900, 108, 180);
+      x = map(CH[2], 900, 1900, 108, 180);
       ESC.write(x);      
     }
-    else if (CH3 != deadzoneA && CH5 != deadzoneA)
+    else if (CH[2] != deadzoneA && CH[4] >= deadzoneA)
     {
-      x = map(CH3, 900, 1900, 108, 0);
+      x = map(CH[2], 900, 1900, 108, 0);
       ESC.write(x);        
     }
+   
 }
 
 
 void TURN(){
 //"y" is a variable tha stores the angle   
-    y = map(CH1, 900, 1900, 0, 180);
+    y = map(CH[0], 900, 1900, 0, 180);
     servo.write(y);
 }
 
-
-void AUTONOMOUS(){
 /*
- * This function will drive the car Autonomously
- */
+void AUTONOMOUS(){
+
+ // This function will drive the car Autonomously
+ 
 //Break
   int lastDistance = 0;
   int distanceDifference = lastDistance - distance ;
@@ -196,8 +163,8 @@ void AUTONOMOUS(){
     lastDistance = distance;
   }
   // Drive
-    /* Makes use of one Ultrasonic sensor. 
-     */
+    // Makes use of one Ultrasonic sensor. 
+     
     else if (CH6 >= autonomous && distance <= 200 && distance > 100){
       ESC.write(180);     // 100% Throttle 
     }else if (CH6 >= autonomous && distance <= 100 && distance > 50){
@@ -219,11 +186,11 @@ void AUTONOMOUS(){
   lastDistance = distance;
 
 // Turn
-  /*Makes use of two IR sensors. The sensors are placed on both sides of the car.
-   *Are monitoring the set distance within the range specified.
-   */
+  //Makes use of two IR sensors. The sensors are placed on both sides of the car.
+   //Are monitoring the set distance within the range specified.
+   
    
 }
-
+*/
 
 
