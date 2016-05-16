@@ -58,6 +58,8 @@ void setup ()
 
 void loop ()
 {
+  //Two variables to keep track of SERVO and ESC  
+  int x, z;
   //map the values
   channel_1 = map(receiver_input_channel_1, fromLow, fromHigh, toLow, toHigh);
   channel_2 = map(receiver_input_channel_2, fromLow, fromHigh, toLow, toHigh);
@@ -91,20 +93,24 @@ void loop ()
     //write the throttle value to esc 
     if(channel_3 > high_mid && channel_5 < dead_zone) //forward
     {
-      ESC.write(map(channel_3, toLow, toLow, esc_mid, esc_high));     
+      x = map(channel_3, toLow, toLow, esc_mid, esc_high);
+      ESC.write(x);     
     }
     else if(channel_3 < low_mid && channel_5 > dead_zone) //reverse
     {
-      ESC.write(map(channel_3, toLow, toHigh, esc_mid, esc_low));
+      x = map(channel_3, toLow, toHigh, esc_mid, esc_low);
+      ESC.write(x);
     }  
     //write the steering value to servo
     if(channel_1 > high_mid) // left
     {
-      SERVO.write(map(channel_1, toLow, toHigh, servo_mid, servo_high));
+      z = map(channel_1, toLow, toHigh, servo_mid, servo_high);
+      SERVO.write(z);
     }
     else if(channel_1 < low_mid) //right
     {
-      SERVO.write(map(channel_1, toLow, toHigh, servo_mid, servo_low));
+      z = map(channel_1, toLow, toHigh, servo_mid, servo_low);
+      SERVO.write(z);
     }
   }
    
