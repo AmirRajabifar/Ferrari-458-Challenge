@@ -13,6 +13,7 @@
 
 #define low_mid 1400
 #define high_mid 1600
+#define bottom 1050
 
 #define dead_zone 1700
 
@@ -91,27 +92,23 @@ void loop ()
   else 
   {
     //write the throttle value to esc 
-    if(channel_3 > high_mid && channel_5 < dead_zone) //forward
+    if(channel_3 > bottom && channel_5 < dead_zone) //forward
     {
       x = map(channel_3, toLow, toLow, esc_mid, esc_high);
       ESC.write(x);     
     }
-    else if(channel_3 < low_mid && channel_5 > dead_zone) //reverse
+    else if(channel_3 > bottom && channel_5 > dead_zone) //reverse
     {
       x = map(channel_3, toLow, toHigh, esc_mid, esc_low);
       ESC.write(x);
     }  
     //write the steering value to servo
-    if(channel_1 > high_mid) // left
+    if(channel_1 > high_mid || channel_1 < low_mid) // left amd Right
     {
-      z = map(channel_1, toLow, toHigh, servo_mid, servo_high);
+      z = map(channel_1, toLow, toHigh, servo_low, servo_high);
       SERVO.write(z);
     }
-    else if(channel_1 < low_mid) //right
-    {
-      z = map(channel_1, toLow, toHigh, servo_mid, servo_low);
-      SERVO.write(z);
-    }
+
   }
    
 // debug
