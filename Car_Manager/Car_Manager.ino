@@ -31,8 +31,8 @@ int esc, servo;
 unsigned long timer_channel_1, timer_channel_2, timer_channel_3, timer_channel_4, timer_channel_5, timer_channel_6;
 unsigned long timer_1, timer_2, timer_3, timer_4, timer_5, timer_6, current_time;
 
-Servo esc;
-Servo serco;
+Servo ESC;
+Servo SERVO;
  
 void setup ()
 {
@@ -50,8 +50,8 @@ void setup ()
   PCMSK2 |= (1 << PCINT21); //Set PCINT21 (Analog input A13) to trigger an interrupt on state change.
 
   //pin connection to servo objects
-  servo.attach(servo_pin);
-  esc.attach(esc_pin);
+  SERVO.attach(servo_pin);
+  ESC.attach(esc_pin);
 
   Serial.begin(115200);
 }
@@ -82,8 +82,8 @@ void loop ()
   //if the trasmitter is off turn esc off and ceter the servo
   if(channel_1 <= toLow && channel_2 <= toLow && channel_3 <= toLow && channel_4 <= toLow && channel_5 <= toLow && channel_6 <= toLow)
   {
-      esc.write(esc_mid);
-      servo.write(servo_mid);
+      ESC.write(esc_mid);
+      SERVO.write(servo_mid);
   }
   //else do the noraml routine
   else 
@@ -91,20 +91,20 @@ void loop ()
     //write the throttle value to esc 
     if(channel_3 > high_mid && channel_5 < dead_zone) //forward
     {
-      esc.write(map(channel_3, toLow, toLow, esc_mid, esc_high));     
+      ESC.write(map(channel_3, toLow, toLow, esc_mid, esc_high));     
     }
     else if(channel_3 < low_mid && channel_5 > dead_zone) //reverse
     {
-      esc.write(map(channel_3, toLow, toHigh, esc_mid, esc_low));
+      ESC.write(map(channel_3, toLow, toHigh, esc_mid, esc_low));
     }  
     //write the steering value to servo
     if(channel_1 > high_mid) // left
     {
-      servo.write(map(channel_1, toLow, toHigh, servo_mid, servo_high));
+      SERVO.write(map(channel_1, toLow, toHigh, servo_mid, servo_high));
     }
     else if(channel_1 < low_mid) //right
     {
-      servo.write(map(channel_1, toLow, toHigh, servo_mid, servo_low));
+      SERVO.write(map(channel_1, toLow, toHigh, servo_mid, servo_low));
     }
   }
    
