@@ -16,7 +16,7 @@ void setup(){
 // canvas si ze  
   size (2000, 900);
 // back ground colour  
-  background(46);
+  background(18, 28, 28);
   
   rectMode(CENTER);
   myFont = createFont("Times New Roman", 32);
@@ -26,27 +26,29 @@ void setup(){
 }
 
 
-void draw(){
+void draw()
+{
 //Import Serial data and process data
 
 
 //Selects the colour for the back gound panel based on the car stat
- switch (stat){
- case ("A"):
-   r = 0;
-   g = 255;
-   b = 0;
-   break;
- case ("B"):
-   r = 255;
-   g = 243;
-   b = 3;
-   break;
- case ("C"):
-   r = 255;
-   g = 0;
-   b = 0;
-   break; 
+ switch (stat)
+ {
+   case ("A"):
+     r = 0;
+     g = 255;
+     b = 0;
+     break;
+   case ("B"):
+     r = 255;
+     g = 243;
+     b = 3;
+     break;
+   case ("C"):
+     r = 255;
+     g = 0;
+     b = 0;
+     break; 
  }
  /*
  
@@ -93,13 +95,15 @@ void draw(){
  strokeWeight(1.5);
  fill(255,255,255);
  rect(width/2 - 565 , height/2 + 75, 700, 500);
+
+
  
 //********main panel********\\
   stroke(0,0,0);
   strokeWeight(3);  
   fill(255,255,255);
   ellipse(width/2, height/2, 650, 650);
-//Over rev indicator 
+//Over speed indicator 
   fill(255,0,0);
   arc(width/2, height/2, 650, 650, PI+radians(125), PI+QUARTER_PI+radians(115));
  
@@ -182,21 +186,39 @@ void draw(){
   fill(255,255,255);
   ellipse(width/2, height/2, 570, 570);
   
-//Middle nidle
+//Middle nidle - speed
   stroke(255,0,0);
   strokeWeight(2);
   fill(255,0,0);
-  rTriangle(width/2, height/2, 320, 15, 20, true);
+  rTriangle(width/2, height/2, 320, 15, speed, true);
  
 //********Right side panel********\\
+  //main ellips
   noStroke();
-  fill(0,0,0);
+  fill(255,255,255);
   ellipse(width/2 + 572, height/2 + 75, 500, 500);
-  
+  // lines
+  for (int i = 270; i >= 20 ; i -= 10) 
+  {
+    strokeWeight(2);
+    stroke(0, 110);
+    lineAngle(width/2 + 572, height/2 + 75, radians(i), 250);    
+  }
+  //an arc and an ellipse to cover the excesslines
+  stroke(1); 
+  fill(255, 255, 255); 
+  arc(width/2 + 572, height/2 + 75, 450, 450, HALF_PI, TWO_PI-radians(20));
+  noStroke();
+  ellipse(width/2 + 572, height/2 + 75, 448, 448);
+  //
 
-  
-
-  
+  //Middle nidle - speed
+  stroke(0, 255, 0);
+  strokeWeight(1);
+  fill(0, 255, 0);
+  rTriangle(width/2 + 572, height/2 + 75, 235, 8, speed, false);
+//*****************************tests*****************************\\ 
+  speed++;
   
 //*****************************alignment*****************************\\ 
  stroke(0,255,0);
@@ -250,7 +272,7 @@ void rTriangle (int x, int y, int HIGHT, int BASE , float angle , boolean line){
   //lineAngle(0,0, radians(angle + 90), BASE/2);
   //lineAngle(0,0, radians(angle - 90), BASE/2);
   
-//an opsion for the HIGHT (show/hide)
+//an option for the HIGHT (show/hide)
   if (line){
     strokeWeight(.5);    
   }else if(!line){
