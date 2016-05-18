@@ -70,7 +70,7 @@ void draw()
   fill(255,0,0);
   arc(width/2, height/2, 650, 650, PI+radians(125), PI+QUARTER_PI+radians(115));
  
-//1st angle devisions for speed indication 
+//1st angle divisions for speed indication 
   for (float i = 257.5; i >= 10; i -= 25){
     strokeWeight(3);
     stroke(255,0,0, 200);
@@ -81,64 +81,20 @@ void draw()
   fill(255,255,255);
   ellipse(width/2, height/2, 625, 625);  
   
-//2nd angle devisions for speed indication 
-  for (int i = 265; i >= 250; i -= 5){
+//2nd angle divisions for speed indication 
+for (int i = 265; i >= 25; i -= 25) {
+  for (int j = i - 15; j <= i ; j += 5) {
     strokeWeight(2);
     stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
+    lineAngle(width/2, height/2, radians(j), 325); 
   }
-  for (int i = 240; i >= 225; i -= 5){
-    strokeWeight(2);
-    stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
-  }
-  for (int i = 215; i >= 200; i -= 5){
-    strokeWeight(2);
-    stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
-  }
-  for (int i = 190; i >= 175; i -= 5){
-    strokeWeight(2);
-    stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
-  }
-  for (int i = 165; i >= 150; i -= 5){
-    strokeWeight(2);
-    stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
-  }
-  for (int i = 140; i >= 125; i -= 5){
-    strokeWeight(2);
-    stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
-  }
-  for (int i = 115; i >= 100; i -= 5){
-    strokeWeight(2);
-    stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
-  }
-  for (int i = 90; i >= 75; i -= 5){
-    strokeWeight(2);
-    stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
-  }
-  for (int i = 65; i >= 50; i -= 5){
-    strokeWeight(2);
-    stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
-  }
-  for (int i = 40; i >= 25; i -= 5){
-    strokeWeight(2);
-    stroke(0, 110);
-    lineAngle(width/2, height/2, radians(i), 325);
-  }
-  
+}
 //An ellipes to cover the excess lines
  fill(255,255,255);
  //ellipse(width/2, height/2, 600, 600);
  arc(width/2, height/2, 600, 600, HALF_PI, TWO_PI-radians(20));
  
-//3rd angle devisions for speed indication 
+//3rd angle divisions for speed indication 
   for (int i = 270; i >= 10; i -= 25){
     strokeWeight(5);
     stroke(0, 200);
@@ -254,18 +210,11 @@ void rTriangle (int x, int y, int HIGHT, int BASE , float angle , boolean line){
   float x2 = (x+cos(radians(angle + 90))*(BASE/2));
   float y2 = (y-sin(radians(angle + 90))*(BASE/2));
   float x3 = (x+cos(radians(angle - 90))*(BASE/2));
-  float y3 = (y-sin(radians(angle - 90))*(BASE/2));
-//Two sides of the triangle  
- // line(x1, y1, x2, y2);
- // line(x1, y1, x3, y3);
+  float y3 = (y-sin(radians(angle - 90))*(BASE/2));  
   triangle (x1, y1, x2, y2, x3, y3);
 //translating a new matrix  
   pushMatrix();
-  translate(x, y);
-//BASE of the triangle  
-  //lineAngle(0,0, radians(angle + 90), BASE/2);
-  //lineAngle(0,0, radians(angle - 90), BASE/2);
-  
+  translate(x, y); 
 //an option for the HIGHT (show/hide)
   if (line){
     strokeWeight(.5);    
