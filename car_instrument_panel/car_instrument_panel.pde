@@ -4,6 +4,8 @@ float r = 0;
 float g = 0;
 float b = 0;
 
+//
+float batterylevel = 0;
 // a character for car stat
 String stat = "A"; 
 
@@ -50,46 +52,7 @@ void draw()
      b = 0;
      break; 
  }
- /*
- 
-// 1st arc: Colour band 
-  strokeWeight(3);
-  stroke(0);
-  fill(255,0,0);
-  arc(750, 700, 750,750, (PI+(HALF_PI-PI/2)), TWO_PI);
-  
-// Lines
-  for (int i = 0; i <= 180; i += 1){
-    strokeWeight(1);
-    stroke(40);
-    lineAngle(750, 700, radians(i), 370);
-  }
-// 2nd arc: To cover the mid lines so it looks more real
-  noStroke();
-  fill(255,0,0);
-  arc(750, 700, 720,720, (PI+(HALF_PI-PI/2)), TWO_PI); 
 
-//Second Set of Liens <It is drwon on top of the 2nd arc>
-  for (int i = 0; i <= 180; i += 10){
-    strokeWeight(2);
-    stroke(0);
-    lineAngle(750, 700, radians(i), 373);
-  }
-  
-// 3rd arc: 
-  strokeWeight(1);
-  stroke(0);
-  fill(255,252,3);
-  arc(750, 700, 700,700, (PI+(HALF_PI-PI/2)), TWO_PI);  
-  
-  fill(255,252,3,54);
-  arc(750, 700, 700,700, (PI+(HALF_PI-PI/2)), TWO_PI);
-
-// Middle nidle
-  strokeWeight(5);
-  stroke(252,0,6,120);
-  lineAngle(750,700, radians(speed), 370); //"speed" is a variable that will get updates via serial converssion to KpH might be required 
-*/
 //********left panel********\\
  stroke(0);
  strokeWeight(1.5);
@@ -185,7 +148,35 @@ void draw()
   noStroke();
   fill(255,255,255);
   ellipse(width/2, height/2, 570, 570);
-  
+
+//********Battery level indicator********\\
+  //outline
+  strokeWeight(2);
+  stroke(0);
+  noFill();
+  rect(width/2, height/2 + 85, 450, 50);
+  //status
+  batterylevel = 50;
+  if (batterylevel >= 70) 
+  {
+    stat = "A";
+  }
+  else if (batterylevel >= 30)
+  {
+    stat = "B";
+  }
+  else if (batterylevel >= 0)
+  {
+    stat = "C";
+  }
+  batterylevel = map(batterylevel, 0, 100, 0, 450);
+  //rect to fill the outline
+  noStroke();
+  fill(r, g, b);
+  rectMode(CORNER);
+  rect(width/2 - 225 , height/2 + 60, batterylevel, 50);
+
+  rectMode(CENTER);
 //Middle nidle - speed
   stroke(255,0,0);
   strokeWeight(2);
@@ -217,9 +208,12 @@ void draw()
   strokeWeight(1);
   fill(0, 255, 0);
   rTriangle(width/2 + 572, height/2 + 75, 235, 8, speed, false);
+
+
 //*****************************tests*****************************\\ 
   speed++;
   
+
 //*****************************alignment*****************************\\ 
  stroke(0,255,0);
  strokeWeight(2);
