@@ -4,14 +4,16 @@
 #include <Wire.h>
 
 #define fromLow 900
+#define frommid 1400
 #define fromHigh 1900
 #define toLow 1000
+#define tomid 1500
 #define toHigh 2000
 
 #define esc_pin 6
 #define servo_pin 5
 
-#define low_mid 1400
+#define low_mid 1550
 #define high_mid 1600
 #define bottom 1050
 
@@ -24,6 +26,8 @@
 #define servo_high 180
 #define servo_mid 90
 #define servo_low 0
+
+#define sample_num 5
 
 byte last_channel_1, last_channel_2, last_channel_3, last_channel_4, last_channel_5, last_channel_6;
 int receiver_input_channel_1, receiver_input_channel_2, receiver_input_channel_3, receiver_input_channel_4, receiver_input_channel_5, receiver_input_channel_6;
@@ -63,12 +67,21 @@ void loop ()
   //Two variables to keep track of SERVO and ESC  
   int x, z;
   //map the values
-  channel_1 = map(receiver_input_channel_1, fromLow, fromHigh, toLow, toHigh);
-  channel_2 = map(receiver_input_channel_2, fromLow, fromHigh, toLow, toHigh);
-  channel_3 = map(receiver_input_channel_3, fromLow, fromHigh, toLow, toHigh);
-  channel_4 = map(receiver_input_channel_4, fromLow, fromHigh, toLow, toHigh);
-  channel_5 = map(receiver_input_channel_5, fromLow, fromHigh, toLow, toHigh);
-  channel_6 = map(receiver_input_channel_6, fromLow, fromHigh, toLow, toHigh);
+  for(int i= 0; i < sample_num; i++)
+  {
+	channel_1 = channel_1 + map(receiver_input_channel_1, fromLow, fromHigh, toLow, toHigh);
+	channel_2 = channel_2 + map(receiver_input_channel_2, fromLow, fromHigh, toLow, toHigh);
+	channel_3 = channel_3 + map(receiver_input_channel_3, fromLow, fromHigh, toLow, toHigh);
+	channel_4 = channel_4 + map(receiver_input_channel_4, fromLow, fromHigh, toLow, toHigh);
+	channel_5 = channel_5 + map(receiver_input_channel_5, fromLow, fromHigh, toLow, toHigh);
+	channel_6 = channel_6 + map(receiver_input_channel_6, fromLow, fromHigh, toLow, toHigh);      
+  }
+  channel_1 = channel_1 / sample_num;
+  channel_2 = channel_2 / sample_num;
+  channel_3 = channel_3 / sample_num;
+  channel_4 = channel_4 / sample_num;
+  channel_5 = channel_5 / sample_num;
+  channel_6 = channel_6 / sample_num;
   //set low point
   if (channel_1 < toLow) channel_1 = toLow;
   if (channel_2 < toLow) channel_2 = toLow;
@@ -95,42 +108,61 @@ void loop ()
     //write the throttle value to esc 
     if(channel_3 > bottom && channel_5 < dead_zone) //forward
     {
-      x = map(channel_3, toLow, toLow, esc_mid, esc_high);
+      x = map(channel_3, toLow, toHigh, esc_mid, esc_high);
       ESC.write(x);     
     }
     else if(channel_3 > bottom && channel_5 > dead_zone) //reverse
     {
-      x = map(channel_3, toLow, toHigh, esc_mid, esc_low);
+      x = map(channel_3, toLow, toHigh, esc_low, esc_mid);
       ESC.write(x);
     }  
     //write the steering value to servo
-    if(channel_1 > high_mid || channel_1 < low_mid) // left amd Right
+    if(channel_1 > low_mid && channel_1 < high_mid)
     {
-      z = map(channel_1, toLow, toHigh, servo_low, servo_high);
+        z = servo_mid;
+        SERVO.write(z);
+    }
+    if(channel_1 > high_mid ) // Left
+    {
+      z = map(channel_1, tomid, toHigh, servo_mid, servo_high);
       SERVO.write(z);
+    }
+    if(channel_1 < low_mid) // Rght
+    {
+      z = map(channel_1, toLow, tomid, servo_low, servo_mid);
+      SERVO.write(z);  
     }
 
   }
    
 // debug
-  Serial.print("Channel 1 = ");
+
+  //Serial.print("Channel 1 = ");
   Serial.print(channel_1);
   Serial.print('\t');
-  Serial.print("Channel 2 = ");
+  //Serial.print("Channel 2 = ");
   Serial.print(channel_2);
   Serial.print('\t');
-  Serial.print("Channel 3 = ");
+  //Serial.print("Channel 3 = ");
   Serial.print(channel_3);
   Serial.print('\t');
-  Serial.print("Channel 4 = ");
+  //Serial.print("Channel 4 = ");
   Serial.print(channel_4);
   Serial.print('\t');
-  Serial.print("Channel 5 = ");
+  //Serial.print("Channel 5 = ");
   Serial.print(channel_5);
   Serial.print('\t');
-  Serial.print("Channel 6 = ");
+  //Serial.print("Channel 6 = ");
   Serial.print(channel_6);
+  Serial.print('\t');
+  //Serial.print("x = ");
+  Serial.print(x);
+  Serial.print('\t');
+  //Serial.print("z = ");
+  Serial.print(z);
   Serial.print('\n');
+  
+
 
 }
 
