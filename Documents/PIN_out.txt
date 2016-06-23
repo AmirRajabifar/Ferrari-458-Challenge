@@ -1,0 +1,11 @@
+Pins:	To:
+RX		mega_TX
+TX		mega_RX
+D3		CH1
+D5		CH2
+D6		CH3
+D9		CH4
+D10		CH5
+D11		CH6
+GND		Circuit_GND
+Vin		5V_out

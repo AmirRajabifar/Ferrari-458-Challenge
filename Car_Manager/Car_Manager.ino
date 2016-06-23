@@ -3,21 +3,22 @@
 #include <NewPing.h>
 #include <Wire.h>
 
-#define fromLow 900
+#define fromLow 1000
 #define frommid 1400
 #define fromHigh 1900
-#define toLow 1000
-#define tomid 1500
-#define toHigh 2000
+
+#define toLow 0
+#define tomid 127
+#define toHigh 255
 
 #define esc_pin 6
 #define servo_pin 5
 
-#define low_mid 1550
-#define high_mid 1600
-#define bottom 1050
+#define low_mid 170
+#define high_mid 175
+#define bottom 1
 
-#define dead_zone 1700
+#define dead_zone 178
 
 #define esc_high 180
 #define esc_mid 90
@@ -69,12 +70,12 @@ void loop ()
   //map the values
   for(int i= 0; i < sample_num; i++)
   {
-	channel_1 = channel_1 + map(receiver_input_channel_1, fromLow, fromHigh, toLow, toHigh);
-	channel_2 = channel_2 + map(receiver_input_channel_2, fromLow, fromHigh, toLow, toHigh);
-	channel_3 = channel_3 + map(receiver_input_channel_3, fromLow, fromHigh, toLow, toHigh);
-	channel_4 = channel_4 + map(receiver_input_channel_4, fromLow, fromHigh, toLow, toHigh);
-	channel_5 = channel_5 + map(receiver_input_channel_5, fromLow, fromHigh, toLow, toHigh);
-	channel_6 = channel_6 + map(receiver_input_channel_6, fromLow, fromHigh, toLow, toHigh);      
+  	channel_1 = channel_1 + map(receiver_input_channel_1, fromLow, fromHigh, toLow, toHigh);
+  	channel_2 = channel_2 + map(receiver_input_channel_2, fromLow, fromHigh, toLow, toHigh);
+  	channel_3 = channel_3 + map(receiver_input_channel_3, fromLow, fromHigh, toLow, toHigh);
+  	channel_4 = channel_4 + map(receiver_input_channel_4, fromLow, fromHigh, toLow, toHigh);
+  	channel_5 = channel_5 + map(receiver_input_channel_5, fromLow, fromHigh, toLow, toHigh);
+  	channel_6 = channel_6 + map(receiver_input_channel_6, fromLow, fromHigh, toLow, toHigh);      
   }
   channel_1 = channel_1 / sample_num;
   channel_2 = channel_2 / sample_num;
