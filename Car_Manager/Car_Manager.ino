@@ -9,14 +9,14 @@
 
 #define toLow 0
 #define tomid 127
-#define toHigh 255
+#define toHigh 254
 
 #define esc_pin 6
 #define servo_pin 5
 
 #define low_mid 170
 #define high_mid 175
-#define bottom 1
+#define bottom 2
 
 #define dead_zone 178
 
@@ -107,12 +107,12 @@ void loop ()
   else 
   {
     //write the throttle value to esc 
-    if(channel_3 > bottom && channel_5 < dead_zone) //forward
+    if(channel_3 >= bottom && channel_5 < dead_zone) //forward
     {
       x = map(channel_3, toLow, toHigh, esc_mid, esc_high);
       ESC.write(x);     
     }
-    else if(channel_3 > bottom && channel_5 > dead_zone) //reverse
+    else if(channel_3 >= bottom && channel_5 > dead_zone) //reverse
     {
       x = map(channel_3, toLow, toHigh, esc_low, esc_mid);
       ESC.write(x);
