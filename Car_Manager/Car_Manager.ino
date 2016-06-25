@@ -30,12 +30,21 @@
 
 #define sample_num 5
 
+#define NUM_SAMPLES 10
+#define VOLTAGE_PIN A0
+#define OUTPUT_PIN 7
+
 byte last_channel_1, last_channel_2, last_channel_3, last_channel_4, last_channel_5, last_channel_6;
 int receiver_input_channel_1, receiver_input_channel_2, receiver_input_channel_3, receiver_input_channel_4, receiver_input_channel_5, receiver_input_channel_6;
 int channel_1, channel_2, channel_3, channel_4, channel_5, channel_6;
 int esc, servo;
 unsigned long timer_channel_1, timer_channel_2, timer_channel_3, timer_channel_4, timer_channel_5, timer_channel_6;
 unsigned long timer_1, timer_2, timer_3, timer_4, timer_5, timer_6, current_time;
+
+int sum = 0;  //sum of samples taken
+int sample_count = 0; // a counter for samples taken
+float voltage = 0;  // calculated voltage
+float underVoltage = 8.3, overVoltage = 10;
 
 Servo ESC;
 Servo SERVO;
@@ -261,4 +270,3 @@ ISR(PCINT2_vect)
     receiver_input_channel_6 = current_time - timer_6;    
   }
 }
-
