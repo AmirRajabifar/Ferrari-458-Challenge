@@ -97,6 +97,9 @@ void loop ()
   	channel_5 = channel_5 + map(receiver_input_channel_5, fromLow, fromHigh, toLow, toHigh);
   	channel_6 = channel_6 + map(receiver_input_channel_6, fromLow, fromHigh, toLow, toHigh);      
   }
+  //calculate the voltage
+  voltage = ((float)sum / (float)NUM_SAMPLES * 5.0) / 1024.0;
+  voltage = voltage * 11.002;
   //average the readings
   channel_1 = channel_1 / sample_num;
   channel_2 = channel_2 / sample_num;
