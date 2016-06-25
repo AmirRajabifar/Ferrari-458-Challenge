@@ -44,7 +44,7 @@ unsigned long timer_1, timer_2, timer_3, timer_4, timer_5, timer_6, current_time
 int sum = 0;  //sum of samples taken
 int sample_count = 0; // a counter for samples taken
 float voltage = 0;  // calculated voltage
-float underVoltage = 8.3, overVoltage = 10;
+float underVoltage = 6.3, overVoltage = 10;
 
 Servo ESC;
 Servo SERVO;
@@ -159,7 +159,23 @@ void loop ()
     }
 
   }
-   
+  //controll the OUTPUT_PIN
+	if(voltage <= underVoltage)
+	{
+		digitalWrite (OUTPUT_PIN, LOW);
+	}
+	else if( voltage >= overVoltage)
+	{
+		digitalWrite(OUTPUT_PIN, LOW);
+	}
+  else 
+  {
+    digitalWrite(OUTPUT_PIN, HIGH); 
+  }
+  
+  //re-set counters 
+  sample_count = 0;
+  sum = 0; 
 // debug
 
   //Serial.print("Channel 1 = ");
@@ -185,8 +201,13 @@ void loop ()
   Serial.print('\t');
   //Serial.print("z = ");
   Serial.print(z);
+  Serial.print('\t');
+
+  Serial.print(voltage);
+  Serial.print(" V"); 
+  Serial.print('\t');
+  Serial.print(digitalRead(OUTPUT_PIN));
   Serial.print('\n');
-  
 
 
 }
