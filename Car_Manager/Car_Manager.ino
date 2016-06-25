@@ -32,7 +32,7 @@
 
 #define NUM_SAMPLES 10
 #define VOLTAGE_PIN A0
-#define OUTPUT_PIN 7
+#define OUTPUT_PIN 22
 
 byte last_channel_1, last_channel_2, last_channel_3, last_channel_4, last_channel_5, last_channel_6;
 int receiver_input_channel_1, receiver_input_channel_2, receiver_input_channel_3, receiver_input_channel_4, receiver_input_channel_5, receiver_input_channel_6;
@@ -69,6 +69,10 @@ void setup ()
   SERVO.attach(servo_pin);
   ESC.attach(esc_pin);
 
+  pinMode(VOLTAGE_PIN, INPUT); //mark VOLTAGE_PIN as INPUT
+  pinMode(OUTPUT_PIN, OUTPUT); //mark OUTPUT_PIN as OUTPUT
+  digitalWrite (OUTPUT_PIN, HIGH); //tack OUTOUT_PIN HIGH
+
   Serial.begin(115200);
 }
 
@@ -76,6 +80,13 @@ void loop ()
 {
   //Two variables to keep track of SERVO and ESC  
   int x, z;
+  //take analog samples and add them up
+  while (sample_count < NUM_SAMPLES)
+  {
+    sum += analogRead(VOLTAGE_PIN);
+    sample_count++;
+    delay(10); //10ms delay due to ADC 
+  } 
   //map the values
   for(int i= 0; i < sample_num; i++)
   {
@@ -86,6 +97,7 @@ void loop ()
   	channel_5 = channel_5 + map(receiver_input_channel_5, fromLow, fromHigh, toLow, toHigh);
   	channel_6 = channel_6 + map(receiver_input_channel_6, fromLow, fromHigh, toLow, toHigh);      
   }
+  //average the readings
   channel_1 = channel_1 / sample_num;
   channel_2 = channel_2 / sample_num;
   channel_3 = channel_3 / sample_num;
