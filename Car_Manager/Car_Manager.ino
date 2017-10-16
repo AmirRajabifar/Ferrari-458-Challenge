@@ -1,38 +1,10 @@
 //Adding requied libraries
 #include <Servo.h>
-#include <NewPing.h>
+//#include <NewPing.h>
 #include <Wire.h>
+#include "definitions.h"
 
-#define fromLow 1000
-#define frommid 1400
-#define fromHigh 1900
 
-#define toLow 0
-#define tomid 127
-#define toHigh 254
-
-#define esc_pin 6
-#define servo_pin 5
-
-#define low_mid 170
-#define high_mid 175
-#define bottom 2
-
-#define dead_zone 178
-
-#define esc_high 180
-#define esc_mid 90
-#define esc_low 0
-
-#define servo_high 180
-#define servo_mid 90
-#define servo_low 0
-
-#define sample_num 5
-
-#define NUM_SAMPLES 10
-#define VOLTAGE_PIN A0
-#define OUTPUT_PIN 22
 
 byte last_channel_1, last_channel_2, last_channel_3, last_channel_4, last_channel_5, last_channel_6;
 int receiver_input_channel_1, receiver_input_channel_2, receiver_input_channel_3, receiver_input_channel_4, receiver_input_channel_5, receiver_input_channel_6;
@@ -71,7 +43,7 @@ void setup ()
 
   pinMode(VOLTAGE_PIN, INPUT); //mark VOLTAGE_PIN as INPUT
   pinMode(OUTPUT_PIN, OUTPUT); //mark OUTPUT_PIN as OUTPUT
-  digitalWrite (OUTPUT_PIN, HIGH); //tack OUTOUT_PIN HIGH
+  digitalWrite (OUTPUT_PIN, HIGH); //take OUTOUT_PIN HIGH
 
   Serial.begin(115200);
 }
