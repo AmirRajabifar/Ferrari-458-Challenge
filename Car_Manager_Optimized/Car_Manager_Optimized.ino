@@ -14,7 +14,7 @@ byte BITS[] = {
 	B00100000
 };
 
-Car car;
+Car car(7, 6);
 
 void setup() 
 {
@@ -46,8 +46,8 @@ void loop()
 		if(channel[i] < toLow)  channel[i] = toLow;  // set low point
 		if(channel[i] > toHigh) channel[i] = toHigh; // set high point
   	}
-	car.throttle(channel[2]);
-	car.steering(channel[0]);
+	car.writeThrottle(channel[2]);
+	car.writeSteering(channel[0]);
 	// Debug
 	/*
 	for(int i = 0; i < channel_numbers; i++)
