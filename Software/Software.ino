@@ -18,13 +18,13 @@ Car car(esc_pin, servo_pin);
 
 void setup() 
 {
-	PCICR  |= (1 << PCIE2); //Set PCIE0 to enable PCMSK2 scan.
-	PCMSK2 |= (1 << PCINT16); //Set PCINT16 (Analog input A8) to trigger an interrupt on state change.
-	PCMSK2 |= (1 << PCINT17); //Set PCINT17 (Analog input A9) to trigger an interrupt on state change.
-	PCMSK2 |= (1 << PCINT18); //Set PCINT18 (Analog input A10) to trigger an interrupt on state change.
-	PCMSK2 |= (1 << PCINT19); //Set PCINT19 (Analog input A11) to trigger an interrupt on state change.
-	PCMSK2 |= (1 << PCINT20); //Set PCINT20 (Analog input A12) to trigger an interrupt on state change.
-	PCMSK2 |= (1 << PCINT21); //Set PCINT21 (Analog input A13) to trigger an interrupt on state change.
+	PCICR  |= (1 << PCIE1);   //Set PCIE0 to enable PCMSK1 scan.
+	PCMSK1 |= (1 << PCINT8);  //Set PCINT8  (Analog input A0) to trigger an interrupt on state change.
+	PCMSK1 |= (1 << PCINT9);  //Set PCINT9  (Analog input A1) to trigger an interrupt on state change.
+	PCMSK1 |= (1 << PCINT10); //Set PCINT10 (Analog input A2) to trigger an interrupt on state change.
+	PCMSK1 |= (1 << PCINT11); //Set PCINT11 (Analog input A3) to trigger an interrupt on state change.
+	PCMSK1 |= (1 << PCINT12); //Set PCINT12 (Analog input A4) to trigger an interrupt on state change.
+	PCMSK1 |= (1 << PCINT13); //Set PCINT13 (Analog input A5) to trigger an interrupt on state change.
 
 	Serial.begin(115200);
 }
@@ -59,12 +59,12 @@ void loop()
 	*/
 }
 
-ISR(PCINT2_vect)
+ISR(PCINT1_vect)
 {
 	for(int i=0; i<channel_numbers; i++)
 	{
 		current_time = micros();
-		if(PINK & BITS[i])
+		if(PINC & BITS[i])
 		{
 			if(last_channel[i] == 0)
 			{
