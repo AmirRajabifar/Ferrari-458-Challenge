@@ -1,13 +1,13 @@
 #include "Car.h"
 
 
-Car::Car(int __ESD_pin, int __Servo_pin)
+Car::Car(int __ESC_pin, int __Servo_pin)
 {
-	pinMode(__ESD_pin, OUTPUT);
+	pinMode(__ESC_pin, OUTPUT);
 	pinMode(__Servo_pin, OUTPUT);
 
 	SERVO.attach(__Servo_pin);
-	ESD.attach(__ESD_pin);
+	ESC.attach(__ESC_pin);
 }
 
 
@@ -18,7 +18,7 @@ float Car::writeThrottle(float a)
 	Serial.print(this->throttleVal);
 	Serial.print('\t');
 	//debug
-	ESD.write(throttleVal);
+	ESC.write(throttleVal);
 }
 
 

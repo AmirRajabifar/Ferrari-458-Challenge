@@ -14,7 +14,7 @@ byte BITS[] = {
 	B00100000
 };
 
-Car car(7, 6);
+Car car(esc_pin, servo_pin);
 
 void setup() 
 {
