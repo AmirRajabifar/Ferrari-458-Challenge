@@ -1,35 +1,134 @@
 EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
+LIBS:RC_Car_Manager-rescue
 LIBS:arduino
 LIBS:RC_CAR
+LIBS:74xgxx
+LIBS:74xx
+LIBS:ac-dc
+LIBS:actel
+LIBS:adc-dac
+LIBS:Altera
+LIBS:analog_devices
+LIBS:analog_switches
+LIBS:atmel
+LIBS:audio
+LIBS:battery_management
+LIBS:bbd
+LIBS:Bosch
+LIBS:brooktre
+LIBS:cmos_ieee
+LIBS:cmos4000
+LIBS:conn
+LIBS:Connector
+LIBS:contrib
+LIBS:cypress
+LIBS:dc-dc
+LIBS:Decawave
+LIBS:device
+LIBS:digital-audio
+LIBS:diode
+LIBS:display
+LIBS:driver_gate
+LIBS:dsp
+LIBS:DSP_Microchip_DSPIC33
+LIBS:elec-unifil
+LIBS:ESD_Protection
+LIBS:Espressif
+LIBS:FPGA_Actel
+LIBS:ftdi
+LIBS:gennum
+LIBS:graphic
+LIBS:hc11
+LIBS:infineon
+LIBS:intel
+LIBS:interface
+LIBS:intersil
+LIBS:ir
+LIBS:Lattice
+LIBS:LED
+LIBS:LEM
+LIBS:linear
+LIBS:Logic_74xgxx
+LIBS:Logic_74xx
+LIBS:Logic_CMOS_4000
+LIBS:Logic_CMOS_IEEE
+LIBS:logic_programmable
+LIBS:Logic_TTL_IEEE
+LIBS:logo
+LIBS:maxim
+LIBS:MCU_Microchip_PIC10
+LIBS:MCU_Microchip_PIC12
+LIBS:MCU_Microchip_PIC16
+LIBS:MCU_Microchip_PIC18
+LIBS:MCU_Microchip_PIC24
+LIBS:MCU_Microchip_PIC32
+LIBS:MCU_NXP_Kinetis
+LIBS:MCU_NXP_LPC
+LIBS:MCU_NXP_S08
+LIBS:MCU_Parallax
+LIBS:MCU_ST_STM8
+LIBS:MCU_ST_STM32
+LIBS:MCU_Texas_MSP430
+LIBS:Mechanical
+LIBS:memory
+LIBS:microchip
+LIBS:microchip_dspic33dsc
+LIBS:microchip_pic10mcu
+LIBS:microchip_pic12mcu
+LIBS:microchip_pic16mcu
+LIBS:microchip_pic18mcu
+LIBS:microchip_pic32mcu
+LIBS:microcontrollers
+LIBS:modules
+LIBS:Motor
+LIBS:motor_drivers
+LIBS:motorola
+LIBS:msp430
+LIBS:nordicsemi
+LIBS:nxp
+LIBS:nxp_armmcu
+LIBS:onsemi
+LIBS:opto
+LIBS:Oscillators
+LIBS:philips
+LIBS:power
+LIBS:Power_Management
+LIBS:powerint
+LIBS:pspice
+LIBS:references
+LIBS:regul
+LIBS:Relay
+LIBS:relays
+LIBS:RF_Bluetooth
+LIBS:rfcom
+LIBS:RFSolutions
+LIBS:Sensor_Current
+LIBS:Sensor_Humidity
+LIBS:sensors
+LIBS:silabs
+LIBS:siliconi
+LIBS:stm8
+LIBS:stm32
+LIBS:supertex
+LIBS:Switch
+LIBS:switches
+LIBS:texas
+LIBS:transf
+LIBS:Transformer
+LIBS:Transistor
+LIBS:transistors
+LIBS:triac_thyristor
+LIBS:ttl_ieee
+LIBS:Valve
+LIBS:valves
+LIBS:video
+LIBS:wiznet
+LIBS:Worldsemi
+LIBS:Xicor
+LIBS:xilinx
+LIBS:zetex
+LIBS:Zilog
+LIBS:RC_Car_Manager-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -45,10 +144,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L CONN_01X02 P2
+L CONN_01X02 P1
 U 1 1 576D1902
 P 3550 1200
-F 0 "P2" H 3550 1350 50  0000 C CNN
+F 0 "P1" H 3550 1350 50  0000 C CNN
 F 1 "7.4V BATTERY_IN" V 3650 1200 50  0000 C CNN
 F 2 "" H 3550 1200 50  0000 C CNN
 F 3 "" H 3550 1200 50  0000 C CNN
@@ -56,10 +155,10 @@ F 3 "" H 3550 1200 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L CONN_01X02 P6
+L CONN_01X02 P2
 U 1 1 576D31E2
 P 5375 1700
-F 0 "P6" H 5375 1850 50  0000 C CNN
+F 0 "P2" H 5375 1850 50  0000 C CNN
 F 1 "7.4V BATTERY_OUT" V 5475 1700 50  0000 C CNN
 F 2 "" H 5375 1700 50  0000 C CNN
 F 3 "" H 5375 1700 50  0000 C CNN
@@ -67,190 +166,190 @@ F 3 "" H 5375 1700 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X04 P1
+L CONN_01X04 P3
 U 1 1 576D41F2
-P 1050 7400
-F 0 "P1" H 1050 7650 50  0000 C CNN
-F 1 "ULTRASONIC" V 1150 7400 50  0000 C CNN
-F 2 "" H 1050 7400 50  0000 C CNN
-F 3 "" H 1050 7400 50  0000 C CNN
-	1    1050 7400
-	0    1    1    0   
-$EndComp
-$Comp
-L CONN_01X03 P3
-U 1 1 576D4245
-P 1650 7400
-F 0 "P3" H 1650 7600 50  0000 C CNN
-F 1 "RIHGT_IR" V 1750 7400 50  0000 C CNN
-F 2 "" H 1650 7400 50  0000 C CNN
-F 3 "" H 1650 7400 50  0000 C CNN
-	1    1650 7400
+P 7925 2850
+F 0 "P3" H 7925 3100 50  0000 C CNN
+F 1 "ULTRASONIC" V 8025 2850 50  0000 C CNN
+F 2 "" H 7925 2850 50  0000 C CNN
+F 3 "" H 7925 2850 50  0000 C CNN
+	1    7925 2850
 	0    1    1    0   
 $EndComp
 $Comp
 L CONN_01X03 P4
-U 1 1 576D4299
-P 2200 7400
-F 0 "P4" H 2200 7600 50  0000 C CNN
-F 1 "LEFT_IR" V 2300 7400 50  0000 C CNN
-F 2 "" H 2200 7400 50  0000 C CNN
-F 3 "" H 2200 7400 50  0000 C CNN
-	1    2200 7400
+U 1 1 576D4245
+P 8525 2850
+F 0 "P4" H 8525 3050 50  0000 C CNN
+F 1 "RIHGT_IR" V 8625 2850 50  0000 C CNN
+F 2 "" H 8525 2850 50  0000 C CNN
+F 3 "" H 8525 2850 50  0000 C CNN
+	1    8525 2850
 	0    1    1    0   
 $EndComp
 $Comp
 L CONN_01X03 P5
+U 1 1 576D4299
+P 9075 2850
+F 0 "P5" H 9075 3050 50  0000 C CNN
+F 1 "LEFT_IR" V 9175 2850 50  0000 C CNN
+F 2 "" H 9075 2850 50  0000 C CNN
+F 3 "" H 9075 2850 50  0000 C CNN
+	1    9075 2850
+	0    1    1    0   
+$EndComp
+$Comp
+L CONN_01X03 P6
 U 1 1 576D42FD
-P 2750 7400
-F 0 "P5" H 2750 7600 50  0000 C CNN
-F 1 "ESC" V 2850 7400 50  0000 C CNN
-F 2 "" H 2750 7400 50  0000 C CNN
-F 3 "" H 2750 7400 50  0000 C CNN
-	1    2750 7400
+P 9625 2850
+F 0 "P6" H 9625 3050 50  0000 C CNN
+F 1 "ESC" V 9725 2850 50  0000 C CNN
+F 2 "" H 9625 2850 50  0000 C CNN
+F 3 "" H 9625 2850 50  0000 C CNN
+	1    9625 2850
 	0    1    1    0   
 $EndComp
 $Comp
 L CONN_01X03 P7
 U 1 1 576D4364
-P 3300 7400
-F 0 "P7" H 3300 7600 50  0000 C CNN
-F 1 "SERVO" V 3400 7400 50  0000 C CNN
-F 2 "" H 3300 7400 50  0000 C CNN
-F 3 "" H 3300 7400 50  0000 C CNN
-	1    3300 7400
+P 10175 2850
+F 0 "P7" H 10175 3050 50  0000 C CNN
+F 1 "SERVO" V 10275 2850 50  0000 C CNN
+F 2 "" H 10175 2850 50  0000 C CNN
+F 3 "" H 10175 2850 50  0000 C CNN
+	1    10175 2850
 	0    1    1    0   
 $EndComp
 $Comp
 L C C1
 U 1 1 576D43B4
-P 3450 7000
-F 0 "C1" H 3475 7100 50  0000 L CNN
-F 1 "C" H 3475 6900 50  0000 L CNN
-F 2 "" H 3488 6850 50  0000 C CNN
-F 3 "" H 3450 7000 50  0000 C CNN
-	1    3450 7000
+P 10325 2450
+F 0 "C1" H 10350 2550 50  0000 L CNN
+F 1 "C" H 10350 2350 50  0000 L CNN
+F 2 "" H 10363 2300 50  0000 C CNN
+F 3 "" H 10325 2450 50  0000 C CNN
+	1    10325 2450
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	3300 6750 3300 7200
+	10175 2200 10175 2650
 Wire Wire Line
-	3600 7200 3400 7200
+	10475 2650 10275 2650
 Wire Wire Line
-	3600 6800 3600 7200
-Connection ~ 3600 7000
-Connection ~ 3300 7000
-Text Label 3300 6750 1    39   ~ 0
+	10475 2250 10475 2650
+Connection ~ 10475 2450
+Connection ~ 10175 2450
+Text Label 10175 2200 1    39   ~ 0
 5V
-Text Label 900  7100 1    39   ~ 0
+Text Label 7775 2550 1    39   ~ 0
 5V
-Text Label 1650 7100 1    39   ~ 0
+Text Label 8525 2550 1    39   ~ 0
 5V
-Text Label 2200 7100 1    39   ~ 0
+Text Label 9075 2550 1    39   ~ 0
 5V
-NoConn ~ 2750 7200
+NoConn ~ 9625 2650
 Wire Wire Line
-	900  7200 900  7100
+	7775 2650 7775 2550
 Wire Wire Line
-	1650 7200 1650 7100
+	8525 2650 8525 2550
 Wire Wire Line
-	2200 7200 2200 7100
-Text Label 1000 7100 1    39   ~ 0
+	9075 2650 9075 2550
+Text Label 7875 2550 1    39   ~ 0
 TRIG
-Text Label 1100 7100 1    39   ~ 0
+Text Label 7975 2550 1    39   ~ 0
 ECHO
 Wire Wire Line
-	1100 7100 1100 7200
+	7975 2550 7975 2650
 $Comp
 L GND #PWR1
 U 1 1 576D5A6C
-P 1200 7050
-F 0 "#PWR1" H 1200 6800 50  0001 C CNN
-F 1 "GND" H 1200 6900 50  0000 C CNN
-F 2 "" H 1200 7050 50  0000 C CNN
-F 3 "" H 1200 7050 50  0000 C CNN
-	1    1200 7050
+P 8075 2500
+F 0 "#PWR1" H 8075 2250 50  0001 C CNN
+F 1 "GND" H 8075 2350 50  0000 C CNN
+F 2 "" H 8075 2500 50  0000 C CNN
+F 3 "" H 8075 2500 50  0000 C CNN
+	1    8075 2500
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	1200 7050 1200 7200
-Text Label 1550 7100 1    39   ~ 0
+	8075 2500 8075 2650
+Text Label 8425 2550 1    39   ~ 0
 D_24
 Wire Wire Line
-	1550 7100 1550 7200
+	8425 2550 8425 2650
 $Comp
 L GND #PWR2
 U 1 1 576D5C22
-P 1750 7100
-F 0 "#PWR2" H 1750 6850 50  0001 C CNN
-F 1 "GND" H 1750 6950 50  0000 C CNN
-F 2 "" H 1750 7100 50  0000 C CNN
-F 3 "" H 1750 7100 50  0000 C CNN
-	1    1750 7100
+P 8625 2550
+F 0 "#PWR2" H 8625 2300 50  0001 C CNN
+F 1 "GND" H 8625 2400 50  0000 C CNN
+F 2 "" H 8625 2550 50  0000 C CNN
+F 3 "" H 8625 2550 50  0000 C CNN
+	1    8625 2550
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	1750 7100 1750 7200
-Text Label 2100 7100 1    39   ~ 0
+	8625 2550 8625 2650
+Text Label 8975 2550 1    39   ~ 0
 D_24
 Wire Wire Line
-	2100 7100 2100 7200
+	8975 2550 8975 2650
 $Comp
 L GND #PWR3
 U 1 1 576D5DA2
-P 2300 7100
-F 0 "#PWR3" H 2300 6850 50  0001 C CNN
-F 1 "GND" H 2300 6950 50  0000 C CNN
-F 2 "" H 2300 7100 50  0000 C CNN
-F 3 "" H 2300 7100 50  0000 C CNN
-	1    2300 7100
+P 9175 2550
+F 0 "#PWR3" H 9175 2300 50  0001 C CNN
+F 1 "GND" H 9175 2400 50  0000 C CNN
+F 2 "" H 9175 2550 50  0000 C CNN
+F 3 "" H 9175 2550 50  0000 C CNN
+	1    9175 2550
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	2300 7100 2300 7200
-Text Label 2650 7100 1    39   ~ 0
-ESC
+	9175 2550 9175 2650
+Text Label 9525 2550 1    39   ~ 0
+D5
 Wire Wire Line
-	2650 7100 2650 7200
+	9525 2550 9525 2650
 $Comp
 L GND #PWR4
 U 1 1 576D5F8C
-P 2850 7100
-F 0 "#PWR4" H 2850 6850 50  0001 C CNN
-F 1 "GND" H 2850 6950 50  0000 C CNN
-F 2 "" H 2850 7100 50  0000 C CNN
-F 3 "" H 2850 7100 50  0000 C CNN
-	1    2850 7100
+P 9725 2550
+F 0 "#PWR4" H 9725 2300 50  0001 C CNN
+F 1 "GND" H 9725 2400 50  0000 C CNN
+F 2 "" H 9725 2550 50  0000 C CNN
+F 3 "" H 9725 2550 50  0000 C CNN
+	1    9725 2550
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	2850 7100 2850 7200
-Text Label 3200 7100 1    39   ~ 0
-SERVO
+	9725 2550 9725 2650
+Text Label 10075 2550 1    39   ~ 0
+D6
 Wire Wire Line
-	3200 7100 3200 7200
+	10075 2550 10075 2650
 $Comp
 L GND #PWR5
 U 1 1 576D627D
-P 3600 6800
-F 0 "#PWR5" H 3600 6550 50  0001 C CNN
-F 1 "GND" H 3600 6650 50  0000 C CNN
-F 2 "" H 3600 6800 50  0000 C CNN
-F 3 "" H 3600 6800 50  0000 C CNN
-	1    3600 6800
+P 10475 2250
+F 0 "#PWR5" H 10475 2000 50  0001 C CNN
+F 1 "GND" H 10475 2100 50  0000 C CNN
+F 2 "" H 10475 2250 50  0000 C CNN
+F 3 "" H 10475 2250 50  0000 C CNN
+	1    10475 2250
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	1000 7100 1000 7200
+	7875 2550 7875 2650
 $Comp
 L Arduino_Mega2560_Shield ARD1
 U 1 1 5A327676
-P 8900 3775
-F 0 "ARD1" V 9000 3775 60  0000 C CNN
-F 1 "Arduino_Mega2560_Shield" V 8800 3775 60  0000 C CNN
-F 2 "" H 9600 6525 60  0001 C CNN
-F 3 "" H 9600 6525 60  0001 C CNN
-	1    8900 3775
+P 2725 5150
+F 0 "ARD1" V 2825 5150 60  0000 C CNN
+F 1 "Arduino_Mega2560_Shield" V 2625 5150 60  0000 C CNN
+F 2 "" H 3425 7900 60  0001 C CNN
+F 3 "" H 3425 7900 60  0001 C CNN
+	1    2725 5150
 	1    0    0    -1  
 $EndComp
 $Sheet
@@ -269,95 +368,93 @@ Text Label 2325 1275 0    60   ~ 0
 5V
 Wire Wire Line
 	2325 1275 2125 1275
-NoConn ~ 8650 1175
-NoConn ~ 8750 1175
-NoConn ~ 8850 1175
-NoConn ~ 8950 1175
-NoConn ~ 9050 1175
-NoConn ~ 9150 1175
-NoConn ~ 10200 1625
-NoConn ~ 10200 1725
-NoConn ~ 10200 1825
-NoConn ~ 10200 1925
-NoConn ~ 10200 2025
-NoConn ~ 10200 2125
-NoConn ~ 10200 2225
-NoConn ~ 10200 2325
-NoConn ~ 10200 2425
-NoConn ~ 10200 2525
-NoConn ~ 10200 2625
-NoConn ~ 10200 2725
-NoConn ~ 10200 2825
-NoConn ~ 10200 3025
-NoConn ~ 10200 3125
-NoConn ~ 10200 3225
-NoConn ~ 10200 3325
-NoConn ~ 10200 3425
-NoConn ~ 10200 3525
-NoConn ~ 10200 3625
-NoConn ~ 10200 3725
-NoConn ~ 10200 3825
-NoConn ~ 10200 3925
-NoConn ~ 10200 4025
-NoConn ~ 10200 4125
-NoConn ~ 10200 4225
-NoConn ~ 10200 4325
-NoConn ~ 10200 4425
-NoConn ~ 10200 4525
-NoConn ~ 10200 4625
-NoConn ~ 10200 4725
-NoConn ~ 10200 4825
-NoConn ~ 10200 4925
-NoConn ~ 10200 5025
-NoConn ~ 10200 5125
-NoConn ~ 10200 5225
-NoConn ~ 10200 5325
-NoConn ~ 10200 5425
-NoConn ~ 10200 5525
-NoConn ~ 10200 5625
-NoConn ~ 10200 5725
-NoConn ~ 10200 5825
-NoConn ~ 10200 5925
-Text Label 7600 5925 2    60   ~ 0
+NoConn ~ 2475 2550
+NoConn ~ 2575 2550
+NoConn ~ 2675 2550
+NoConn ~ 2775 2550
+NoConn ~ 2875 2550
+NoConn ~ 2975 2550
+NoConn ~ 4025 3000
+NoConn ~ 4025 3100
+NoConn ~ 4025 3200
+NoConn ~ 4025 3500
+NoConn ~ 4025 3600
+NoConn ~ 4025 3700
+NoConn ~ 4025 3800
+NoConn ~ 4025 3900
+NoConn ~ 4025 4000
+NoConn ~ 4025 4100
+NoConn ~ 4025 4200
+NoConn ~ 4025 4400
+NoConn ~ 4025 4500
+NoConn ~ 4025 4600
+NoConn ~ 4025 4700
+NoConn ~ 4025 4800
+NoConn ~ 4025 4900
+NoConn ~ 4025 5000
+NoConn ~ 4025 5100
+NoConn ~ 4025 5200
+NoConn ~ 4025 5300
+NoConn ~ 4025 5400
+NoConn ~ 4025 5500
+NoConn ~ 4025 5600
+NoConn ~ 4025 5700
+NoConn ~ 4025 5800
+NoConn ~ 4025 5900
+NoConn ~ 4025 6000
+NoConn ~ 4025 6100
+NoConn ~ 4025 6200
+NoConn ~ 4025 6300
+NoConn ~ 4025 6400
+NoConn ~ 4025 6500
+NoConn ~ 4025 6600
+NoConn ~ 4025 6700
+NoConn ~ 4025 6800
+NoConn ~ 4025 6900
+NoConn ~ 4025 7000
+NoConn ~ 4025 7100
+NoConn ~ 4025 7200
+NoConn ~ 4025 7300
+Text Label 1425 7300 2    60   ~ 0
 5V
-Text Label 7600 5025 2    60   ~ 0
+Text Label 1425 6400 2    60   ~ 0
 GND
-Text Label 7600 5125 2    60   ~ 0
+Text Label 1425 6500 2    60   ~ 0
 GND
-Text Label 7600 5225 2    60   ~ 0
+Text Label 1425 6600 2    60   ~ 0
 GND
-Text Label 7600 5325 2    60   ~ 0
+Text Label 1425 6700 2    60   ~ 0
 GND
-Text Label 7600 5425 2    60   ~ 0
+Text Label 1425 6800 2    60   ~ 0
 GND
-NoConn ~ 7600 5825
-NoConn ~ 7600 5725
-NoConn ~ 7600 5625
-NoConn ~ 7600 5525
-NoConn ~ 7600 4825
-NoConn ~ 7600 4725
-NoConn ~ 7600 4525
-NoConn ~ 7600 4425
-NoConn ~ 7600 4325
-NoConn ~ 7600 3625
-NoConn ~ 7600 3525
-NoConn ~ 7600 3425
-NoConn ~ 7600 3325
-NoConn ~ 7600 3225
-NoConn ~ 7600 3125
-NoConn ~ 7600 3025
-NoConn ~ 7600 2725
-NoConn ~ 7600 2625
-NoConn ~ 7600 2525
-NoConn ~ 7600 2425
-NoConn ~ 7600 2325
-NoConn ~ 7600 2225
-NoConn ~ 7600 2125
-NoConn ~ 7600 2025
-NoConn ~ 7600 1925
-NoConn ~ 7600 1825
-NoConn ~ 7600 1725
-NoConn ~ 7600 1625
+NoConn ~ 1425 7200
+NoConn ~ 1425 7100
+NoConn ~ 1425 7000
+NoConn ~ 1425 6900
+NoConn ~ 1425 6200
+NoConn ~ 1425 6100
+NoConn ~ 1425 5900
+NoConn ~ 1425 5800
+NoConn ~ 1425 5700
+NoConn ~ 1425 5000
+NoConn ~ 1425 4900
+NoConn ~ 1425 4800
+NoConn ~ 1425 4700
+NoConn ~ 1425 4600
+NoConn ~ 1425 4500
+NoConn ~ 1425 4400
+NoConn ~ 1425 4100
+NoConn ~ 1425 4000
+NoConn ~ 1425 3900
+NoConn ~ 1425 3800
+NoConn ~ 1425 3700
+NoConn ~ 1425 3600
+NoConn ~ 1425 3500
+NoConn ~ 1425 3400
+NoConn ~ 1425 3300
+NoConn ~ 1425 3200
+NoConn ~ 1425 3100
+NoConn ~ 1425 3000
 $Sheet
 S 3900 1025 1025 825 
 U 5A34C92E
@@ -386,47 +483,51 @@ Text Label 5100 1150 0    60   ~ 0
 D23
 Wire Wire Line
 	5100 1150 4925 1150
-Text Label 10200 2925 0    60   ~ 0
+Text Label 4025 4300 0    60   ~ 0
 D23
-Text Label 7600 2925 2    60   ~ 0
+Text Label 1425 4300 2    60   ~ 0
 A0
 $Comp
 L Receiver REC1
 U 1 1 5A353D45
-P 1575 3750
-F 0 "REC1" H 2575 3800 60  0000 C CNN
-F 1 "Receiver" H 1775 4250 60  0000 C CNN
-F 2 "" H 1575 3750 60  0001 C CNN
-F 3 "" H 1575 3750 60  0001 C CNN
-	1    1575 3750
+P 6625 1450
+F 0 "REC1" H 7625 1500 60  0000 C CNN
+F 1 "Receiver" H 6825 1950 60  0000 C CNN
+F 2 "" H 6625 1450 60  0001 C CNN
+F 3 "" H 6625 1450 60  0001 C CNN
+	1    6625 1450
 	1    0    0    -1  
 $EndComp
-Text Label 1375 3400 2    60   ~ 0
+Text Label 6425 1100 2    60   ~ 0
 5V
-Text Label 1375 3500 2    60   ~ 0
+Text Label 6425 1200 2    60   ~ 0
 GND
-Text Label 1825 3950 3    60   ~ 0
+Text Label 6875 1650 3    60   ~ 0
 A8
-Text Label 7600 3725 2    60   ~ 0
+Text Label 1425 5100 2    60   ~ 0
 A8
-Text Label 1925 3950 3    60   ~ 0
+Text Label 6975 1650 3    60   ~ 0
 A9
-Text Label 7600 3825 2    60   ~ 0
+Text Label 1425 5200 2    60   ~ 0
 A9
-Text Label 2025 3950 3    60   ~ 0
+Text Label 7075 1650 3    60   ~ 0
 A10
-Text Label 7600 3925 2    60   ~ 0
+Text Label 1425 5300 2    60   ~ 0
 A10
-Text Label 2125 3950 3    60   ~ 0
+Text Label 7175 1650 3    60   ~ 0
 A11
-Text Label 7600 4025 2    60   ~ 0
+Text Label 1425 5400 2    60   ~ 0
 A11
-Text Label 2225 3950 3    60   ~ 0
+Text Label 7275 1650 3    60   ~ 0
 A12
-Text Label 7600 4125 2    60   ~ 0
+Text Label 1425 5500 2    60   ~ 0
 A12
-Text Label 2325 3950 3    60   ~ 0
+Text Label 7375 1650 3    60   ~ 0
 A13
-Text Label 7600 4225 2    60   ~ 0
+Text Label 1425 5600 2    60   ~ 0
 A13
+Text Label 4025 3300 0    60   ~ 0
+D5
+Text Label 4025 3400 0    60   ~ 0
+D6
 $EndSCHEMATC

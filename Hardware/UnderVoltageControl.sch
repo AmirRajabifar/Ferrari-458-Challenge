@@ -1,35 +1,134 @@
 EESchema Schematic File Version 2
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
+LIBS:RC_Car_Manager-rescue
 LIBS:arduino
 LIBS:RC_CAR
+LIBS:74xgxx
+LIBS:74xx
+LIBS:ac-dc
+LIBS:actel
+LIBS:adc-dac
+LIBS:Altera
+LIBS:analog_devices
+LIBS:analog_switches
+LIBS:atmel
+LIBS:audio
+LIBS:battery_management
+LIBS:bbd
+LIBS:Bosch
+LIBS:brooktre
+LIBS:cmos_ieee
+LIBS:cmos4000
+LIBS:conn
+LIBS:Connector
+LIBS:contrib
+LIBS:cypress
+LIBS:dc-dc
+LIBS:Decawave
+LIBS:device
+LIBS:digital-audio
+LIBS:diode
+LIBS:display
+LIBS:driver_gate
+LIBS:dsp
+LIBS:DSP_Microchip_DSPIC33
+LIBS:elec-unifil
+LIBS:ESD_Protection
+LIBS:Espressif
+LIBS:FPGA_Actel
+LIBS:ftdi
+LIBS:gennum
+LIBS:graphic
+LIBS:hc11
+LIBS:infineon
+LIBS:intel
+LIBS:interface
+LIBS:intersil
+LIBS:ir
+LIBS:Lattice
+LIBS:LED
+LIBS:LEM
+LIBS:linear
+LIBS:Logic_74xgxx
+LIBS:Logic_74xx
+LIBS:Logic_CMOS_4000
+LIBS:Logic_CMOS_IEEE
+LIBS:logic_programmable
+LIBS:Logic_TTL_IEEE
+LIBS:logo
+LIBS:maxim
+LIBS:MCU_Microchip_PIC10
+LIBS:MCU_Microchip_PIC12
+LIBS:MCU_Microchip_PIC16
+LIBS:MCU_Microchip_PIC18
+LIBS:MCU_Microchip_PIC24
+LIBS:MCU_Microchip_PIC32
+LIBS:MCU_NXP_Kinetis
+LIBS:MCU_NXP_LPC
+LIBS:MCU_NXP_S08
+LIBS:MCU_Parallax
+LIBS:MCU_ST_STM8
+LIBS:MCU_ST_STM32
+LIBS:MCU_Texas_MSP430
+LIBS:Mechanical
+LIBS:memory
+LIBS:microchip
+LIBS:microchip_dspic33dsc
+LIBS:microchip_pic10mcu
+LIBS:microchip_pic12mcu
+LIBS:microchip_pic16mcu
+LIBS:microchip_pic18mcu
+LIBS:microchip_pic32mcu
+LIBS:microcontrollers
+LIBS:modules
+LIBS:Motor
+LIBS:motor_drivers
+LIBS:motorola
+LIBS:msp430
+LIBS:nordicsemi
+LIBS:nxp
+LIBS:nxp_armmcu
+LIBS:onsemi
+LIBS:opto
+LIBS:Oscillators
+LIBS:philips
+LIBS:power
+LIBS:Power_Management
+LIBS:powerint
+LIBS:pspice
+LIBS:references
+LIBS:regul
+LIBS:Relay
+LIBS:relays
+LIBS:RF_Bluetooth
+LIBS:rfcom
+LIBS:RFSolutions
+LIBS:Sensor_Current
+LIBS:Sensor_Humidity
+LIBS:sensors
+LIBS:silabs
+LIBS:siliconi
+LIBS:stm8
+LIBS:stm32
+LIBS:supertex
+LIBS:Switch
+LIBS:switches
+LIBS:texas
+LIBS:transf
+LIBS:Transformer
+LIBS:Transistor
+LIBS:transistors
+LIBS:triac_thyristor
+LIBS:ttl_ieee
+LIBS:Valve
+LIBS:valves
+LIBS:video
+LIBS:wiznet
+LIBS:Worldsemi
+LIBS:Xicor
+LIBS:xilinx
+LIBS:zetex
+LIBS:Zilog
+LIBS:RC_Car_Manager-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -89,17 +188,11 @@ F 3 "" H 4525 2850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4475 2475 4575 2475
+	4475 2475 4625 2475
 Wire Wire Line
-	4575 2475 4625 2475
+	4925 2475 5075 2475
 Wire Wire Line
-	4925 2475 4975 2475
-Wire Wire Line
-	4975 2475 5075 2475
-Wire Wire Line
-	5375 2475 5475 2475
-Wire Wire Line
-	5475 2475 5575 2475
+	5375 2475 5575 2475
 Wire Wire Line
 	5375 2725 5475 2725
 Wire Wire Line
@@ -108,27 +201,14 @@ Connection ~ 5475 2475
 Wire Wire Line
 	5075 2725 4975 2725
 Wire Wire Line
-	4975 2475 4975 2725
-Wire Wire Line
-	4975 2725 4975 2875
+	4975 2475 4975 2875
 Connection ~ 4975 2475
 Connection ~ 4975 2725
 $Comp
-L 2SA1016 Q1
-U 1 1 5A34D145
-P 4975 4075
-F 0 "Q1" H 5175 4150 50  0000 L CNN
-F 1 "2N3904" H 5175 4075 50  0000 L CNN
-F 2 "TO-92" H 5175 4000 50  0000 L CIN
-F 3 "" H 4975 4075 50  0000 L CNN
-	1    4975 4075
-	1    0    0    -1  
-$EndComp
-$Comp
-L Q_NMOS_DGS Q2
+L Q_NMOS_DGS Q1
 U 1 1 5A34D14C
 P 5925 3825
-F 0 "Q2" H 6225 3875 50  0000 R CNN
+F 0 "Q1" H 6225 3875 50  0000 R CNN
 F 1 "FQP48P06" H 6475 3775 50  0000 R CNN
 F 2 "" H 6125 3925 50  0000 C CNN
 F 3 "" H 5925 3825 50  0000 C CNN
@@ -136,9 +216,7 @@ F 3 "" H 5925 3825 50  0000 C CNN
 	1    0    0    1   
 $EndComp
 Wire Wire Line
-	4525 2850 4525 2825
-Wire Wire Line
-	4525 2825 4525 2575
+	4525 2575 4525 2850
 Wire Wire Line
 	4525 2575 4475 2575
 Connection ~ 4575 2475
@@ -173,18 +251,14 @@ F 3 "" H 5075 3625 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6025 3225 6025 3375
-Wire Wire Line
-	6025 3375 6025 3625
+	6025 3225 6025 3625
 Wire Wire Line
 	6025 3375 5075 3375
 Wire Wire Line
 	5075 3375 5075 3475
 Connection ~ 6025 3375
 Wire Wire Line
-	5075 3775 5075 3825
-Wire Wire Line
-	5075 3825 5075 3875
+	5075 3775 5075 3875
 Wire Wire Line
 	5725 3825 5075 3825
 Connection ~ 5075 3825
@@ -204,18 +278,14 @@ F 3 "" H 6425 4375 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	6025 4025 6025 4225
-Wire Wire Line
-	6025 4225 6025 4325
+	6025 4025 6025 4325
 Wire Wire Line
 	6025 4225 6425 4225
 Connection ~ 6025 4225
 Wire Wire Line
 	5075 4275 5075 4625
 Wire Wire Line
-	6425 4525 6425 4625
-Wire Wire Line
-	6425 4625 6425 4675
+	6425 4525 6425 4675
 Wire Wire Line
 	6025 4425 6025 4625
 Wire Wire Line
@@ -244,4 +314,15 @@ Text HLabel 4275 4075 0    60   Input ~ 0
 CTRL
 Text HLabel 4975 2875 3    60   Input ~ 0
 VOLT
+$Comp
+L 2N3904 Q2
+U 1 1 5A33FE0E
+P 4975 4075
+F 0 "Q2" H 5175 4150 50  0000 L CNN
+F 1 "2N3904" H 5175 4075 50  0000 L CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Molded_Narrow" H 5175 4000 50  0001 L CIN
+F 3 "" H 4975 4075 50  0001 L CNN
+	1    4975 4075
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
