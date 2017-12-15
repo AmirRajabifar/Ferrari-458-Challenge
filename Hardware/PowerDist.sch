@@ -1,0 +1,241 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:arduino
+LIBS:RC_Car_Manager-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 4
+Title "Power Distribution"
+Date "2017-12-15"
+Rev "V1.0"
+Comp "Amir Rajabifar"
+Comment1 "Ferrari 458 Challenge"
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Notes 2100 1400 0    60   ~ 0
+Power IN
+$Comp
+L FUSE F1
+U 1 1 5A341BDE
+P 6400 3150
+F 0 "F1" H 6500 3200 50  0000 C CNN
+F 1 "FUSE" H 6300 3100 50  0000 C CNN
+F 2 "" H 6400 3150 50  0000 C CNN
+F 3 "" H 6400 3150 50  0000 C CNN
+	1    6400 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L SPST SW1
+U 1 1 5A341BE5
+P 7300 3150
+F 0 "SW1" H 7300 3250 50  0000 C CNN
+F 1 "SPST" H 7300 3050 50  0000 C CNN
+F 2 "" H 7300 3150 50  0000 C CNN
+F 3 "" H 7300 3150 50  0000 C CNN
+	1    7300 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP C3
+U 1 1 5A341BEC
+P 8000 3600
+F 0 "C3" H 8025 3700 50  0000 L CNN
+F 1 "1000U" H 8025 3500 50  0000 L CNN
+F 2 "" H 8038 3450 50  0000 C CNN
+F 3 "" H 8000 3600 50  0000 C CNN
+	1    8000 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP C4
+U 1 1 5A341BF3
+P 9100 3600
+F 0 "C4" H 9125 3700 50  0000 L CNN
+F 1 "1000U" H 9125 3500 50  0000 L CNN
+F 2 "" H 9138 3450 50  0000 C CNN
+F 3 "" H 9100 3600 50  0000 C CNN
+	1    9100 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L LM7805 U1
+U 1 1 5A341BFA
+P 8550 3200
+F 0 "U1" H 8700 3004 50  0000 C CNN
+F 1 "LM7805" H 8550 3400 50  0000 C CNN
+F 2 "" H 8550 3200 50  0000 C CNN
+F 3 "" H 8550 3200 50  0000 C CNN
+	1    8550 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6650 3150 6800 3150
+Wire Wire Line
+	7800 3150 8150 3150
+Wire Wire Line
+	8000 3450 8000 3150
+Connection ~ 8000 3150
+Wire Wire Line
+	8950 3150 9750 3150
+Wire Wire Line
+	9100 3450 9100 3150
+Connection ~ 9100 3150
+Wire Wire Line
+	8550 3450 8550 3850
+Connection ~ 8550 3850
+Wire Wire Line
+	9100 3850 9100 3750
+Connection ~ 9100 3850
+Wire Wire Line
+	8000 3750 8000 3850
+Connection ~ 8000 3850
+Text Notes 7100 2850 0    60   ~ 0
+Power_Distro
+$Sheet
+S 1300 1700 500  500 
+U 5A341C31
+F0 "BatteryManager" 60
+F1 "BatteryManager.sch" 60
+F2 "V_cc" I R 1800 1800 60 
+F3 "GND" I R 1800 2050 60 
+$EndSheet
+Wire Wire Line
+	1800 1800 3500 1800
+$Comp
+L D D2
+U 1 1 5A34221E
+P 3500 1550
+F 0 "D2" H 3500 1650 50  0000 C CNN
+F 1 "1N4007" H 3500 1450 50  0000 C CNN
+F 2 "" H 3500 1550 50  0000 C CNN
+F 3 "" H 3500 1550 50  0000 C CNN
+	1    3500 1550
+	0    1    1    0   
+$EndComp
+$Comp
+L D D3
+U 1 1 5A34226F
+P 3500 2000
+F 0 "D3" H 3500 2100 50  0000 C CNN
+F 1 "1N4007" H 3500 1900 50  0000 C CNN
+F 2 "" H 3500 2000 50  0000 C CNN
+F 3 "" H 3500 2000 50  0000 C CNN
+	1    3500 2000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3500 1700 3500 1850
+Connection ~ 3500 1800
+$Comp
+L D D4
+U 1 1 5A34240E
+P 3500 2500
+F 0 "D4" H 3500 2600 50  0000 C CNN
+F 1 "1N4007" H 3500 2400 50  0000 C CNN
+F 2 "" H 3500 2500 50  0000 C CNN
+F 3 "" H 3500 2500 50  0000 C CNN
+	1    3500 2500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L D D5
+U 1 1 5A342490
+P 3500 2950
+F 0 "D5" H 3500 3050 50  0000 C CNN
+F 1 "1N4007" H 3500 2850 50  0000 C CNN
+F 2 "" H 3500 2950 50  0000 C CNN
+F 3 "" H 3500 2950 50  0000 C CNN
+	1    3500 2950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3500 2650 3500 2800
+Wire Wire Line
+	1800 2050 2450 2050
+Wire Wire Line
+	2450 2050 2450 2700
+Wire Wire Line
+	2450 2700 3500 2700
+Connection ~ 3500 2700
+Wire Wire Line
+	3500 2150 3500 2350
+Connection ~ 3500 2250
+Wire Wire Line
+	3500 1400 3500 1300
+Wire Wire Line
+	3500 1300 3850 1300
+Wire Wire Line
+	3850 1300 3850 3200
+Wire Wire Line
+	3850 3200 3500 3200
+Wire Wire Line
+	3500 3200 3500 3100
+Connection ~ 3850 2250
+Wire Wire Line
+	3850 2250 4100 2250
+Text Label 4100 2250 0    60   ~ 0
+Vcc
+Wire Wire Line
+	3000 2250 3500 2250
+$Comp
+L GND #PWR10
+U 1 1 5A3438CD
+P 3100 2300
+F 0 "#PWR10" H 3100 2050 50  0001 C CNN
+F 1 "GND" H 3100 2150 50  0000 C CNN
+F 2 "" H 3100 2300 50  0000 C CNN
+F 3 "" H 3100 2300 50  0000 C CNN
+	1    3100 2300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 2300 3100 2250
+Connection ~ 3100 2250
+Text Label 3000 2250 2    60   ~ 0
+GND
+Text Label 5950 3150 2    60   ~ 0
+Vcc
+Wire Wire Line
+	5950 3150 6150 3150
+Wire Wire Line
+	7500 3850 9750 3850
+Text Label 7500 3850 2    60   ~ 0
+GND
+Text HLabel 9750 3150 2    60   Input ~ 0
+5V
+Text HLabel 9750 3850 2    60   Input ~ 0
+GND
+$EndSCHEMATC

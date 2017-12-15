@@ -1,11 +1,14 @@
 Pins:	To:
-RX		mega_TX
-TX		mega_RX
-D3		CH1
-D5		CH2
-D6		CH3
-D9		CH4
-D10		CH5
-D11		CH6
+
+A8		CH1
+A9		CH2
+A10		CH3
+A11		CH4
+A12		CH5
+A13		CH6
+
 GND		Circuit_GND
 Vin		5V_out
+
+D5		ESC
+D6		Servo
