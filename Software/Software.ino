@@ -42,7 +42,7 @@ void loop()
 	}
 	for(int i = 0; i < channel_numbers; i++) 
 	{
-		channel[i] = channel[i] / sample_num; 			 // Take average
+		channel[i] = channel[i] / sample_num; 		 // Take average
 		if(channel[i] < toLow)  channel[i] = toLow;  // set low point
 		if(channel[i] > toHigh) channel[i] = toHigh; // set high point
   	}
@@ -52,8 +52,8 @@ void loop()
 	/*
 	for(int i = 0; i < channel_numbers; i++)
 	{
-	Serial.print(channel[i]);
-	Serial.print('\t');
+		Serial.print(channel[i]);
+		Serial.print('\t');
 	}
 	Serial.print('\n');
 	*/

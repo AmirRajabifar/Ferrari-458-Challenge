@@ -2,11 +2,11 @@
 #define DEFINITIONS_H 
 
 #define fromLow 1000
-#define frommid 1400
+#define fromMid 1400
 #define fromHigh 1900
 
 #define toLow 0
-#define tomid 127
+#define toMid 127
 #define toHigh 254
 
 #define esc_pin 6
